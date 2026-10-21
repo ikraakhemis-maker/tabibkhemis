@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0e7490">
-<title>دليل الأطباء – خميس مليانة</title>
-<meta name="description" content="دليل احترافي شامل لأطباء وعيادات بلدية خميس مليانة – أرقام الهاتف، العناوين والتخصصات.">
+<title>دليل الأطباء – الجزائر</title>
+<meta name="description" content="دليل احترافي شامل لأطباء وعيادات الجزائر – أرقام الهاتف، العناوين والتخصصات.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -53,7 +53,8 @@
   .stat span{font-size:.75rem;color:var(--muted);font-weight:600;}
 
   /* FILTERS */
-  .filters{max-width:1180px;margin:28px auto 0;padding:0 16px;}
+  .filters-container{max-width:1180px;margin:28px auto 0;padding:0 16px;display:flex;flex-direction:column;gap:16px;}
+  .filters{width:100%;}
   .filters h2{font-size:.85rem;font-weight:700;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
   .chips{display:flex;gap:7px;flex-wrap:wrap;}
   .chip{font-family:inherit;font-size:.78rem;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;background:#fff;color:#334155;border:1.5px solid var(--border);transition:.18s;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;gap:5px;touch-action:manipulation;}
@@ -61,6 +62,9 @@
   .chip.active{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(14,116,144,.28);}
   .chip .cnt{display:inline-block;background:rgba(0,0,0,.08);border-radius:999px;padding:0 6px;font-size:.7rem;font-weight:700;min-width:20px;text-align:center;}
   .chip.active .cnt{background:rgba(255,255,255,.25);}
+  
+  .chip.wilaya{border-color:#cbd5e1;background:#f8fafc;}
+  .chip.wilaya.active{background:linear-gradient(135deg,#0f172a,#334155);border-color:transparent;}
 
   /* RESULTS */
   main{max-width:1180px;margin:0 auto;padding:22px 16px 50px;}
@@ -92,7 +96,9 @@
   .avatar{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e0f2fe,#cffafe);color:var(--primary);display:grid;place-items:center;font-size:1.15rem;font-weight:800;border:1px solid #bae6fd;}
   .card-head h3{font-size:.95rem;font-weight:800;line-height:1.4;margin-bottom:2px;word-break:break-word;}
   .specialty{font-size:.75rem;color:var(--primary);font-weight:600;line-height:1.5;word-break:break-word;}
-  .tag{align-self:flex-start;font-size:.68rem;font-weight:700;background:var(--primary-light);color:var(--primary-dark);padding:3px 10px;border-radius:999px;border:1px solid #bae6fd;white-space:nowrap;}
+  .tags-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;}
+  .tag{font-size:.68rem;font-weight:700;background:var(--primary-light);color:var(--primary-dark);padding:3px 10px;border-radius:999px;border:1px solid #bae6fd;white-space:nowrap;}
+  .tag.wilaya-tag{background:#f1f5f9;color:#475569;border-color:#cbd5e1;}
   .addr{display:flex;gap:7px;align-items:flex-start;font-size:.78rem;color:var(--muted);font-weight:500;background:#f8fafc;border:1px dashed #e2e8f0;border-radius:10px;padding:8px 10px;word-break:break-word;}
   .addr svg{flex-shrink:0;width:14px;height:14px;margin-top:4px;stroke:var(--accent);}
   .phones{display:flex;flex-direction:column;gap:7px;margin-top:auto;}
@@ -182,7 +188,7 @@
   <div class="topbar">
     <div class="brand">
       <div class="logo">🩺</div>
-      <div>خميس مليانة الطبية<small>دليل الأطباء والعيادات – عين الدفلى</small></div>
+      <div>دليل الأطباء<small>خميس مليانة والجزائر</small></div>
     </div>
     <div class="top-links">
       <a href="#doctors">قائمة الأطباء</a>
@@ -191,11 +197,11 @@
   </div>
 
   <div class="hero">
-    <h1>دليل <span>أطباء خميس مليانة</span> الشامل</h1>
-    <p>جميع الأطباء والمختصين والعيادات في بلدية خميس مليانة – أرقام الهاتف، العناوين والتخصصات في مكان واحد.</p>
+    <h1>دليل <span>الأطباء والمختصين</span> الشامل</h1>
+    <p>ابحث عن طبيبك بسهولة حسب الولاية، التخصص، أو اسم الحي. أرقام الهاتف والعناوين في مكان واحد.</p>
     <div class="search-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-      <input type="text" id="searchInput" placeholder="ابحث عن طبيب، تخصص، أو حي…" autocomplete="off" inputmode="search">
+      <input type="text" id="searchInput" placeholder="ابحث عن طبيب، تخصص، ولاية، أو حي…" autocomplete="off" inputmode="search">
     </div>
   </div>
 </header>
@@ -203,14 +209,21 @@
 <div class="stats">
   <div class="stat"><b id="statDoctors">0</b><span>طبيب ومختص</span></div>
   <div class="stat"><b id="statSpecialties">0</b><span>تخصص طبي</span></div>
+  <div class="stat"><b id="statWilayas">0</b><span>ولاية</span></div>
   <div class="stat"><b id="statPhones">0</b><span>رقم هاتف</span></div>
-  <div class="stat"><b>24/7</b><span>خدمة البحث</span></div>
 </div>
 
-<section class="filters">
-  <h2>🔎 تصفية حسب التخصص</h2>
-  <div class="chips" id="chips"></div>
-</section>
+<div class="filters-container">
+  <section class="filters">
+    <h2>📍 تصفية حسب الولاية</h2>
+    <div class="chips" id="wilayaChips"></div>
+  </section>
+  
+  <section class="filters">
+    <h2>🔎 تصفية حسب التخصص</h2>
+    <div class="chips" id="chips"></div>
+  </section>
+</div>
 
 <main id="doctors">
   <div class="results-bar">
@@ -235,7 +248,7 @@
 
 <footer id="contact">
   <h3>تطوير وتصميم</h3>
-  <p>صفحة احترافية تخدم سكان بلدية خميس مليانة والمناطق المجاورة.</p>
+  <p>صفحة احترافية تخدم سكان الجزائر والمناطق المجاورة.</p>
   <div class="dev-card">
     <div class="dev-avatar">رك</div>
     <div class="dev-info"><b>ركاب عبد القادر</b><small>مطوّر المواقع الإلكترونية</small></div>
@@ -244,7 +257,7 @@
       0773375427
     </a>
   </div>
-  <div class="copyright">© <span id="year"></span> دليل أطباء خميس مليانة — تطوير: ركاب عبد القادر</div>
+  <div class="copyright">© <span id="year"></span> دليل الأطباء — تطوير: ركاب عبد القادر</div>
 </footer>
 
 <a class="float-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener" title="واتساب المطوّر">
@@ -261,61 +274,61 @@
    ========================================================== */
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/14hbhgdB51DH6Q0TYIeYTscBG0bkZ5waNqbn5Q_HEBYc/export?format=csv&gid=0";
 
-/* ============ بيانات احتياطية (تُعرض إذا فشل الاتصال) ============ */
+/* ============ بيانات احتياطية (محدثة لتشمل الولاية) ============ */
 const FALLBACK_DATA = [
-  {n:"داودي", s:"أمراض الكلى والمسالك البولية، عقم الرجال والضعف الجنسي", c:"الكلى والمسالك البولية", a:"حي سيدي معمر، البلوك الأول، قرب الجامع العتيق", p:["0668046804","027566454"]},
-  {n:"بغدير بوزيد", s:"طب إعادة التأهيل الحركي", c:"الطب الفيزيائي وإعادة التأهيل", a:"", p:["0773024664"]},
-  {n:"س. بوقريعة", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0798257044"]},
-  {n:"عبد الرحيم طالبي", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0696947910"]},
-  {n:"بوكيرة عباسي", s:"طب التوليد وأمراض النساء", c:"النساء والتوليد", a:"", p:["0673238678"]},
-  {n:"مصراوي", s:"طب العيون", c:"طب العيون", a:"", p:["027552222","0659350605"]},
-  {n:"بوڨروش يزيد", s:"أخصائية في أمراض الدم", c:"أمراض الدم", a:"", p:["0542740365"]},
-  {n:"م. اعيوش", s:"أمراض وجراحة الأذن والأنف والحنجرة والحساسية", c:"الأنف والأذن والحنجرة", a:"حي الحرية", p:["027560480"]},
-  {n:"رحماني. م", s:"أخصائية نفسانية", c:"النفسية والعصبية", a:"", p:["0555851942"]},
-  {n:"يعقوب بوالشحم", s:"طبيب الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["0698909909"]},
-  {n:"عياد", s:"أمراض الغدد الصماء والسكري", c:"الغدد الصماء والسكري", a:"", p:["0770781655"]},
-  {n:"د. بريك. غ", s:"عيادة أمراض الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["0670309444"]},
-  {n:"عيادة الزهراء — حطابي عمار", s:"التكفل النفسي والأرطفوني المختص", c:"النفسية والعصبية", a:"", p:["0792094769"]},
-  {n:"بسكري حمزة", s:"الأمراض النفسية والعصبية", c:"النفسية والعصبية", a:"حي سيدي معمر", p:["0541082163"]},
-  {n:"ڨنيش", s:"طب العيون", c:"طب العيون", a:"حي سيدي معمر", p:["027566468"]},
-  {n:"ف. مخاطي", s:"طبيبة القلب", c:"أمراض القلب", a:"حي سيدي معمر", p:["0668435888"]},
-  {n:"مداني. ر", s:"أمراض النساء والتوليد", c:"النساء والتوليد", a:"", p:["0550216065"]},
-  {n:"س. خماش", s:"طب الأطفال، الربو والحساسية", c:"طب الأطفال", a:"", p:["0541960656"]},
-  {n:"مروان", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["027560605"]},
-  {n:"بن يحيى", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0542572760"]},
-  {n:"بوعزدرية سمير", s:"اختصاصي في طب وجراحة العظام والمفاصل", c:"العظام والمفاصل", a:"حي السلام", p:["027568384","0556246991"]},
-  {n:"بلحاج ق. أ", s:"الأمراض الصدرية والتنفسية والحساسية", c:"الصدرية والتنفس", a:"", p:[]},
-  {n:"البروفيسور م. راحم", s:"جراحة العظام والمفاصل", c:"العظام والمفاصل", a:"حي سيتي مارشي، وسط المدينة", p:["028788899","0771273045"]},
-  {n:"طبيبة أسنان — أمراض اللثة", s:"طب الأسنان، مختصة في أمراض اللثة", c:"طب الأسنان", a:"حي سيتي مارشي، وسط المدينة", p:["0556039747"]},
-  {n:"نويس. أ", s:"أمراض القلب والشرايين", c:"أمراض القلب", a:"حي السلام", p:["0551703744","0654329388"]},
-  {n:"نويزة أناس", s:"طب وجراحة العيون", c:"طب العيون", a:"", p:["0555573093","0552177693"]},
-  {n:"نجاري م. ع", s:"مختص في طب وجراحة الأعين", c:"طب العيون", a:"", p:["027567571"]},
-  {n:"خلفاوي زوجة علي أوصالح", s:"أمراض القلب والشرايين", c:"أمراض القلب", a:"", p:["027558812","0561004737"]},
-  {n:"خرفي محمد", s:"طبيب الجلد", c:"الجلد", a:"", p:["0664582423"]},
-  {n:"راحم نصر الدين", s:"أمراض الجهاز الهضمي والكبد", c:"الجهاز الهضمي والكبد", a:"حي سيتي مارشي، وسط المدينة", p:["0774011075","027561949"]},
-  {n:"كلال نبيل", s:"اختصاصي في طب الأطفال", c:"طب الأطفال", a:"", p:["0553995472"]},
-  {n:"حاج صدوق م. س", s:"أمراض الرئة والتنفس والحساسية", c:"الصدرية والتنفس", a:"", p:["0778618719","0558254330"]},
-  {n:"بوهدة رضا", s:"مرض السكري والغدد الصماء", c:"الغدد الصماء والسكري", a:"", p:["0799090761","0560550027"]},
-  {n:"واضح", s:"أمراض الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["027552154","0772446059"]},
-  {n:"فارسي", s:"الطب الفيزيائي وإعادة التأهيل", c:"الطب الفيزيائي وإعادة التأهيل", a:"أمام محطة المسافرين", p:["0551395203"]},
-  {n:"رضا حسان", s:"طبيب عام", c:"طب عام", a:"حي النجمة", p:["027566579","0556428351"]},
-  {n:"بن رقية", s:"طبيبة الأسنان", c:"طب الأسنان", a:"حي السلام", p:["0555146205"]},
-  {n:"عبد النور عباس", s:"طبيب عام — ختان، ECG، حجامة، PRP، هيدرا فيشل، تلقيح", c:"طب عام", a:"حي سيدي معمر", p:["0661421699"]},
-  {n:"ف. شرشالي", s:"الطب الداخلي، القلب والضغط الدموي", c:"أمراض القلب", a:"", p:["027568590","0660033703"]},
-  {n:"خليف محمد", s:"طبيب أخصائي", c:"طب عام", a:"", p:["027563111"]},
-  {n:"وليد عاشور", s:"اختصاصي الأنف والحنجرة", c:"الأنف والأذن والحنجرة", a:"", p:["0552770063"]},
-  {n:"بوحرود", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0552503602"]},
-  {n:"جابر. س", s:"أمراض النساء والتوليد", c:"النساء والتوليد", a:"", p:["0556630222"]},
-  {n:"بومدين حسام الدين", s:"اختصاصي المخ والأعصاب والعضلات", c:"النفسية والعصبية", a:"حي السلام", p:["0555611100","027568521"]},
-  {n:"مصطفى مخاطري", s:"طب عام", c:"طب عام", a:"", p:["0664881620"]},
-  {n:"بناي أ", s:"طب عام", c:"طب عام", a:"", p:["027568433"]},
-  {n:"عربوز الهادي", s:"طب وجراحة العظام والمفاصل والروماتيزم", c:"العظام والمفاصل", a:"حي سيدي معمر", p:["0550061120"]},
-  {n:"شريفة طيبوني", s:"أمراض الرئة والتنفس", c:"الصدرية والتنفس", a:"حي سيدي معمر، قدام الطاكسيات", p:["0657443440"]},
-  {n:"عيادة شاوشي والدكتورة عوفي", s:"طب عام، استعجالات، تغذية", c:"طب عام", a:"حي السلام", p:["027569457","0659090443"]},
-  {n:"عيادة الونشريس", s:"مؤسسة استشفائية خاصة — جراحة، ولادة، أشعة 24 ساعة (CNAS/CASNOS)", c:"مؤسسات صحية", a:"حي الحرية + فرع حي القايد (950 مسكن)", p:["027552463","0550910606","0560970892"]},
-  {n:"المؤسسة العمومية الاستشفائية", s:"مستشفى عمومي", c:"مؤسسات صحية", a:"خميس مليانة", p:["027559155"]},
-  {n:"مركز التصوير الطبي الشفاء", s:"مركز تصوير طبي", c:"التصوير الطبي", a:"", p:["0540831881"]},
-  {n:"عيادة البسمة", s:"عيادة طبية", c:"مؤسسات صحية", a:"", p:["0560970892"]}
+  {n:"داودي", s:"أمراض الكلى والمسالك البولية، عقم الرجال والضعف الجنسي", c:"الكلى والمسالك البولية", a:"حي سيدي معمر، البلوك الأول، قرب الجامع العتيق", p:["0668046804","027566454"], w:"عين الدفلى"},
+  {n:"بغدير بوزيد", s:"طب إعادة التأهيل الحركي", c:"الطب الفيزيائي وإعادة التأهيل", a:"", p:["0773024664"], w:"عين الدفلى"},
+  {n:"س. بوقريعة", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0798257044"], w:"عين الدفلى"},
+  {n:"عبد الرحيم طالبي", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0696947910"], w:"عين الدفلى"},
+  {n:"بوكيرة عباسي", s:"طب التوليد وأمراض النساء", c:"النساء والتوليد", a:"", p:["0673238678"], w:"عين الدفلى"},
+  {n:"مصراوي", s:"طب العيون", c:"طب العيون", a:"", p:["027552222","0659350605"], w:"عين الدفلى"},
+  {n:"بوڨروش يزيد", s:"أخصائية في أمراض الدم", c:"أمراض الدم", a:"", p:["0542740365"], w:"عين الدفلى"},
+  {n:"م. اعيوش", s:"أمراض وجراحة الأذن والأنف والحنجرة والحساسية", c:"الأنف والأذن والحنجرة", a:"حي الحرية", p:["027560480"], w:"عين الدفلى"},
+  {n:"رحماني. م", s:"أخصائية نفسانية", c:"النفسية والعصبية", a:"", p:["0555851942"], w:"عين الدفلى"},
+  {n:"يعقوب بوالشحم", s:"طبيب الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["0698909909"], w:"عين الدفلى"},
+  {n:"عياد", s:"أمراض الغدد الصماء والسكري", c:"الغدد الصماء والسكري", a:"", p:["0770781655"], w:"عين الدفلى"},
+  {n:"د. بريك. غ", s:"عيادة أمراض الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["0670309444"], w:"عين الدفلى"},
+  {n:"عيادة الزهراء — حطابي عمار", s:"التكفل النفسي والأرطفوني المختص", c:"النفسية والعصبية", a:"", p:["0792094769"], w:"عين الدفلى"},
+  {n:"بسكري حمزة", s:"الأمراض النفسية والعصبية", c:"النفسية والعصبية", a:"حي سيدي معمر", p:["0541082163"], w:"عين الدفلى"},
+  {n:"ڨنيش", s:"طب العيون", c:"طب العيون", a:"حي سيدي معمر", p:["027566468"], w:"عين الدفلى"},
+  {n:"ف. مخاطي", s:"طبيبة القلب", c:"أمراض القلب", a:"حي سيدي معمر", p:["0668435888"], w:"عين الدفلى"},
+  {n:"مداني. ر", s:"أمراض النساء والتوليد", c:"النساء والتوليد", a:"", p:["0550216065"], w:"عين الدفلى"},
+  {n:"س. خماش", s:"طب الأطفال، الربو والحساسية", c:"طب الأطفال", a:"", p:["0541960656"], w:"عين الدفلى"},
+  {n:"مروان", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["027560605"], w:"عين الدفلى"},
+  {n:"بن يحيى", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0542572760"], w:"عين الدفلى"},
+  {n:"بوعزدرية سمير", s:"اختصاصي في طب وجراحة العظام والمفاصل", c:"العظام والمفاصل", a:"حي السلام", p:["027568384","0556246991"], w:"عين الدفلى"},
+  {n:"بلحاج ق. أ", s:"الأمراض الصدرية والتنفسية والحساسية", c:"الصدرية والتنفس", a:"", p:[], w:"عين الدفلى"},
+  {n:"البروفيسور م. راحم", s:"جراحة العظام والمفاصل", c:"العظام والمفاصل", a:"حي سيتي مارشي، وسط المدينة", p:["028788899","0771273045"], w:"عين الدفلى"},
+  {n:"طبيبة أسنان — أمراض اللثة", s:"طب الأسنان، مختصة في أمراض اللثة", c:"طب الأسنان", a:"حي سيتي مارشي، وسط المدينة", p:["0556039747"], w:"عين الدفلى"},
+  {n:"نويس. أ", s:"أمراض القلب والشرايين", c:"أمراض القلب", a:"حي السلام", p:["0551703744","0654329388"], w:"عين الدفلى"},
+  {n:"نويزة أناس", s:"طب وجراحة العيون", c:"طب العيون", a:"", p:["0555573093","0552177693"], w:"عين الدفلى"},
+  {n:"نجاري م. ع", s:"مختص في طب وجراحة الأعين", c:"طب العيون", a:"", p:["027567571"], w:"عين الدفلى"},
+  {n:"خلفاوي زوجة علي أوصالح", s:"أمراض القلب والشرايين", c:"أمراض القلب", a:"", p:["027558812","0561004737"], w:"عين الدفلى"},
+  {n:"خرفي محمد", s:"طبيب الجلد", c:"الجلد", a:"", p:["0664582423"], w:"عين الدفلى"},
+  {n:"راحم نصر الدين", s:"أمراض الجهاز الهضمي والكبد", c:"الجهاز الهضمي والكبد", a:"حي سيتي مارشي، وسط المدينة", p:["0774011075","027561949"], w:"عين الدفلى"},
+  {n:"كلال نبيل", s:"اختصاصي في طب الأطفال", c:"طب الأطفال", a:"", p:["0553995472"], w:"عين الدفلى"},
+  {n:"حاج صدوق م. س", s:"أمراض الرئة والتنفس والحساسية", c:"الصدرية والتنفس", a:"", p:["0778618719","0558254330"], w:"عين الدفلى"},
+  {n:"بوهدة رضا", s:"مرض السكري والغدد الصماء", c:"الغدد الصماء والسكري", a:"", p:["0799090761","0560550027"], w:"عين الدفلى"},
+  {n:"واضح", s:"أمراض الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["027552154","0772446059"], w:"عين الدفلى"},
+  {n:"فارسي", s:"الطب الفيزيائي وإعادة التأهيل", c:"الطب الفيزيائي وإعادة التأهيل", a:"أمام محطة المسافرين", p:["0551395203"], w:"عين الدفلى"},
+  {n:"رضا حسان", s:"طبيب عام", c:"طب عام", a:"حي النجمة", p:["027566579","0556428351"], w:"عين الدفلى"},
+  {n:"بن رقية", s:"طبيبة الأسنان", c:"طب الأسنان", a:"حي السلام", p:["0555146205"], w:"عين الدفلى"},
+  {n:"عبد النور عباس", s:"طبيب عام — ختان، ECG، حجامة، PRP، هيدرا فيشل، تلقيح", c:"طب عام", a:"حي سيدي معمر", p:["0661421699"], w:"عين الدفلى"},
+  {n:"ف. شرشالي", s:"الطب الداخلي، القلب والضغط الدموي", c:"أمراض القلب", a:"", p:["027568590","0660033703"], w:"عين الدفلى"},
+  {n:"خليف محمد", s:"طبيب أخصائي", c:"طب عام", a:"", p:["027563111"], w:"عين الدفلى"},
+  {n:"وليد عاشور", s:"اختصاصي الأنف والحنجرة", c:"الأنف والأذن والحنجرة", a:"", p:["0552770063"], w:"عين الدفلى"},
+  {n:"بوحرود", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0552503602"], w:"عين الدفلى"},
+  {n:"جابر. س", s:"أمراض النساء والتوليد", c:"النساء والتوليد", a:"", p:["0556630222"], w:"عين الدفلى"},
+  {n:"بومدين حسام الدين", s:"اختصاصي المخ والأعصاب والعضلات", c:"النفسية والعصبية", a:"حي السلام", p:["0555611100","027568521"], w:"عين الدفلى"},
+  {n:"مصطفى مخاطري", s:"طب عام", c:"طب عام", a:"", p:["0664881620"], w:"عين الدفلى"},
+  {n:"بناي أ", s:"طب عام", c:"طب عام", a:"", p:["027568433"], w:"عين الدفلى"},
+  {n:"عربوز الهادي", s:"طب وجراحة العظام والمفاصل والروماتيزم", c:"العظام والمفاصل", a:"حي سيدي معمر", p:["0550061120"], w:"عين الدفلى"},
+  {n:"شريفة طيبوني", s:"أمراض الرئة والتنفس", c:"الصدرية والتنفس", a:"حي سيدي معمر، قدام الطاكسيات", p:["0657443440"], w:"عين الدفلى"},
+  {n:"عيادة شاوشي والدكتورة عوفي", s:"طب عام، استعجالات، تغذية", c:"طب عام", a:"حي السلام", p:["027569457","0659090443"], w:"عين الدفلى"},
+  {n:"عيادة الونشريس", s:"مؤسسة استشفائية خاصة — جراحة، ولادة، أشعة 24 ساعة (CNAS/CASNOS)", c:"مؤسسات صحية", a:"حي الحرية + فرع حي القايد (950 مسكن)", p:["027552463","0550910606","0560970892"], w:"عين الدفلى"},
+  {n:"المؤسسة العمومية الاستشفائية", s:"مستشفى عمومي", c:"مؤسسات صحية", a:"خميس مليانة", p:["027559155"], w:"عين الدفلى"},
+  {n:"مركز التصوير الطبي الشفاء", s:"مركز تصوير طبي", c:"التصوير الطبي", a:"", p:["0540831881"], w:"عين الدفلى"},
+  {n:"عيادة البسمة", s:"عيادة طبية", c:"مؤسسات صحية", a:"", p:["0560970892"], w:"عين الدفلى"}
 ];
 
 /* ============ أدوات ============ */
@@ -329,6 +342,7 @@ const initial = name => (name.replace(/^(البروفيسور|الدكتور|ا�
 /* ============ عناصر DOM ============ */
 const grid        = document.getElementById("grid");
 const chipsBox    = document.getElementById("chips");
+const wilayaChips = document.getElementById("wilayaChips");
 const searchInput = document.getElementById("searchInput");
 const resultCount = document.getElementById("resultCount");
 const filterLabel = document.getElementById("activeFilterLabel");
@@ -338,6 +352,7 @@ const toTop       = document.getElementById("toTop");
 
 let DATA = [];
 let activeCat = "الكل";
+let activeWilaya = "الكل";
 let query = "";
 
 /* ============ CSV Parser ============ */
@@ -376,7 +391,8 @@ async function fetchSheet() {
       s: (r[1]||"").trim(),
       c: (r[2]||"").trim() || "طب عام",
       a: (r[3]||"").trim(),
-      p: (r[4]||"").split("/").map(x=>x.trim()).filter(Boolean)
+      p: (r[4]||"").split("/").map(x=>x.trim()).filter(Boolean),
+      w: (r[5]||"").trim() || "غير محددة" // العمود السادس للولاية
     }));
   if (!data.length) throw new Error("الجدول فارغ");
   return data;
@@ -403,6 +419,7 @@ async function loadData() {
   }
 
   updateStats();
+  buildWilayaChips();
   buildChips();
   render();
 }
@@ -411,17 +428,44 @@ async function loadData() {
 function updateStats() {
   document.getElementById("statDoctors").textContent = DATA.length;
   document.getElementById("statSpecialties").textContent = new Set(DATA.map(d=>d.c)).size;
+  document.getElementById("statWilayas").textContent = new Set(DATA.map(d=>d.w)).size;
   document.getElementById("statPhones").textContent = DATA.reduce((a,d)=>a+d.p.length,0);
 }
 
-/* ============ الفلاتر ============ */
-function buildChips() {
+/* ============ فلاتر الولايات ============ */
+function buildWilayaChips() {
   const counts = {};
-  DATA.forEach(d => counts[d.c] = (counts[d.c]||0)+1);
+  DATA.forEach(d => counts[d.w] = (counts[d.w]||0)+1);
+  const wilayas = ["الكل", ...Object.keys(counts).sort((a,b)=>counts[b]-counts[a])];
+
+  wilayaChips.innerHTML = wilayas.map(w => {
+    const num = w === "الكل" ? DATA.length : counts[w];
+    return `<button class="chip wilaya${w===activeWilaya?" active":""}" data-wilaya="${w}">${w} <span class="cnt">${num}</span></button>`;
+  }).join("");
+
+  wilayaChips.querySelectorAll(".chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      wilayaChips.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeWilaya = btn.dataset.wilaya;
+      render();
+    });
+  });
+}
+
+/* ============ فلاتر التخصصات ============ */
+function buildChips() {
+  // تصفية التخصصات بناءً على الولاية المختارة حالياً
+  const currentData = activeWilaya === "الكل" ? DATA : DATA.filter(d => d.w === activeWilaya);
+  
+  const counts = {};
+  currentData.forEach(d => counts[d.c] = (counts[d.c]||0)+1);
   const cats = ["الكل", ...Object.keys(counts).sort((a,b)=>counts[b]-counts[a])];
 
+  if (!cats.includes(activeCat)) activeCat = "الكل";
+
   chipsBox.innerHTML = cats.map(cat => {
-    const num = cat === "الكل" ? DATA.length : counts[cat];
+    const num = cat === "الكل" ? currentData.length : counts[cat];
     return `<button class="chip${cat===activeCat?" active":""}" data-cat="${cat}">${cat} <span class="cnt">${num}</span></button>`;
   }).join("");
 
@@ -451,9 +495,15 @@ function cardHTML(d) {
   return `<article class="card">
     <div class="card-head">
       <div class="avatar">${initial(d.n)}</div>
-      <div><h3>${d.n}</h3><div class="specialty">${d.s}</div></div>
+      <div>
+        <h3>${d.n}</h3>
+        <div class="specialty">${d.s}</div>
+        <div class="tags-row">
+          <span class="tag">${d.c}</span>
+          <span class="tag wilaya-tag">📍 ${d.w}</span>
+        </div>
+      </div>
     </div>
-    <span class="tag">${d.c}</span>
     ${d.a ? `<div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${d.a}</span></div>` : ""}
     <div class="phones">${phones}</div>
   </article>`;
@@ -463,17 +513,23 @@ function cardHTML(d) {
 function render() {
   const q = norm(query);
   const filtered = DATA.filter(d => {
+    if (activeWilaya !== "الكل" && d.w !== activeWilaya) return false;
     if (activeCat !== "الكل" && d.c !== activeCat) return false;
     if (!q) return true;
-    return norm([d.n, d.s, d.c, d.a, d.p.join(" ")].join(" ")).includes(q);
+    // البحث يشمل الولاية أيضاً
+    return norm([d.n, d.s, d.c, d.a, d.w, d.p.join(" ")].join(" ")).includes(q);
   });
 
   resultCount.textContent = filtered.length;
-  filterLabel.textContent = activeCat === "الكل" ? "" : "التخصص: " + activeCat;
+  
+  let label = "";
+  if (activeWilaya !== "الكل") label += `الولاية: ${activeWilaya} `;
+  if (activeCat !== "الكل") label += `| التخصص: ${activeCat}`;
+  filterLabel.textContent = label.trim();
 
   grid.innerHTML = filtered.length
     ? filtered.map(cardHTML).join("")
-    : `<div class="empty"><div class="ico">🔍</div><b>لا توجد نتائج مطابقة</b>جرّب البحث بكلمة أخرى أو اختر تخصصاً مختلفاً.</div>`;
+    : `<div class="empty"><div class="ico">🔍</div><b>لا توجد نتائج مطابقة</b>جرّب البحث بكلمة أخرى أو اختر تخصصاً أو ولاية مختلفة.</div>`;
 }
 
 /* ============ الأحداث ============ */
