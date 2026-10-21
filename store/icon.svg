@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 88 88"><defs>
+<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="108" y2="108"><stop offset="0" stop-color="#083344"/><stop offset="1" stop-color="#0E7490"/></linearGradient>
+<radialGradient id="r" gradientUnits="userSpaceOnUse" cx="54" cy="52" r="50"><stop offset="0" stop-color="#22D3EE" stop-opacity="0.3"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/></radialGradient></defs>
+<rect width="108" height="108" fill="url(#g)"/><rect width="108" height="108" fill="url(#r)"/>
+<circle cx="136" cy="100" r="36" stroke="#fff" stroke-opacity="0.08" stroke-width="1.6" fill="none"/>
+<circle cx="154" cy="100" r="54" stroke="#fff" stroke-opacity="0.06" stroke-width="1.6" fill="none"/>
+<circle cx="54" cy="56.5" r="24" fill="#000" fill-opacity="0.25"/>
+<circle cx="54" cy="54" r="24" fill="#fff"/>
+<path d="M49.5,40 H58.5 V49.5 H68 V58.5 H58.5 V68 H49.5 V58.5 H40 V49.5 H49.5 Z" fill="#0E7490" stroke="#0E7490" stroke-width="2" stroke-linejoin="round"/>
+<path d="M77,33.5 Q77.4,37.6 81.5,38 Q77.4,38.4 77,42.5 Q76.6,38.4 72.5,38 Q76.6,37.6 77,33.5 Z" fill="#F5A524"/></svg>
