@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل الأطباء – خميس مليانة | Khemis Miliana Doctors</title>
+<meta name="description" content="دليل احترافي شامل لأطباء وعيادات بلدية خميس مليانة، ولاية عين الدفلى – أرقام الهاتف، العناوين والتخصصات.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --primary:#0e7490;
+    --primary-dark:#155e75;
+    --primary-light:#e0f2fe;
+    --accent:#06b6d4;
+    --green:#16a34a;
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --text:#0f172a;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --shadow:0 4px 16px rgba(15,23,42,.06);
+    --shadow-lg:0 12px 32px rgba(15,23,42,.12);
+    --radius:16px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Cairo',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ============ HEADER ============ */
+  header{
+    background:linear-gradient(135deg,#0e7490 0%,#0891b2 50%,#06b6d4 100%);
+    color:#fff;
+    padding:0;
+    position:relative;
+    overflow:hidden;
+  }
+  header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(circle at 20% 20%, rgba(255,255,255,.13) 0%, transparent 45%),
+                     radial-gradient(circle at 85% 70%, rgba(255,255,255,.10) 0%, transparent 40%);
+    pointer-events:none;
+  }
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;padding:14px 22px;
+    border-bottom:1px solid rgba(255,255,255,.15);
+    position:relative;z-index:2;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.05rem;}
+  .brand .logo{
+    width:42px;height:42px;border-radius:12px;
+    background:rgba(255,255,255,.18);
+    display:grid;place-items:center;font-size:1.35rem;
+    border:1px solid rgba(255,255,255,.3);
+    backdrop-filter:blur(6px);
+  }
+  .brand small{display:block;font-weight:400;font-size:.75rem;opacity:.85;line-height:1.2;}
+
+  .top-links{display:flex;gap:10px;flex-wrap:wrap;}
+  .top-links a{
+    color:#fff;text-decoration:none;font-size:.85rem;font-weight:600;
+    padding:8px 16px;border-radius:999px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);
+    transition:.2s;
+  }
+  .top-links a:hover{background:rgba(255,255,255,.28);transform:translateY(-1px);}
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:46px 22px 90px;
+    text-align:center;position:relative;z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(1.6rem,4vw,2.6rem);
+    font-weight:800;letter-spacing:-.5px;margin-bottom:10px;
+  }
+  .hero h1 span{color:#a5f3fc;}
+  .hero p{
+    max-width:640px;margin:0 auto 26px;
+    font-size:clamp(.9rem,2vw,1.05rem);
+    opacity:.92;font-weight:400;
+  }
+
+  /* ============ SEARCH ============ */
+  .search-wrap{
+    max-width:620px;margin:0 auto;position:relative;
+  }
+  .search-wrap svg{
+    position:absolute;right:20px;top:50%;transform:translateY(-50%);
+    width:20px;height:20px;stroke:#94a3b8;pointer-events:none;
+  }
+  #searchInput{
+    width:100%;padding:17px 54px 17px 22px;
+    border-radius:999px;border:none;
+    font-family:inherit;font-size:1rem;font-weight:500;
+    color:var(--text);
+    box-shadow:0 10px 30px rgba(8,47,73,.28);
+    outline:none;transition:.25s;
+  }
+  #searchInput::placeholder{color:#94a3b8;font-weight:400;}
+  #searchInput:focus{box-shadow:0 0 0 4px rgba(255,255,255,.35),0 12px 34px rgba(8,47,73,.3);}
+
+  /* ============ STATS ============ */
+  .stats{
+    max-width:1100px;margin:-55px auto 0;padding:0 18px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:14px;position:relative;z-index:3;
+  }
+  .stat{
+    background:var(--card);border-radius:var(--radius);
+    padding:18px 16px;text-align:center;
+    box-shadow:var(--shadow);border:1px solid var(--border);
+  }
+  .stat b{display:block;font-size:1.7rem;font-weight:800;color:var(--primary);line-height:1.2;}
+  .stat span{font-size:.82rem;color:var(--muted);font-weight:600;}
+
+  /* ============ FILTERS ============ */
+  .filters{
+    max-width:1180px;margin:34px auto 0;padding:0 18px;
+  }
+  .filters h2{
+    font-size:.9rem;font-weight:700;color:var(--muted);
+    margin-bottom:12px;display:flex;align-items:center;gap:8px;
+  }
+  .chips{
+    display:flex;gap:9px;flex-wrap:wrap;
+  }
+  .chip{
+    font-family:inherit;font-size:.85rem;font-weight:600;
+    padding:9px 17px;border-radius:999px;cursor:pointer;
+    background:#fff;color:#334155;
+    border:1.5px solid var(--border);
+    transition:.18s;white-space:nowrap;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--primary);}
+  .chip.active{
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;border-color:transparent;
+    box-shadow:0 6px 16px rgba(14,116,144,.28);
+  }
+  .chip .cnt{
+    display:inline-block;margin-right:6px;
+    background:rgba(0,0,0,.08);border-radius:999px;
+    padding:0 7px;font-size:.72rem;font-weight:700;
+  }
+  .chip.active .cnt{background:rgba(255,255,255,.25);}
+
+  /* ============ RESULTS ============ */
+  main{max-width:1180px;margin:0 auto;padding:26px 18px 60px;}
+  .results-bar{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:12px;flex-wrap:wrap;margin-bottom:18px;
+    font-size:.88rem;color:var(--muted);font-weight:600;
+  }
+  .results-bar b{color:var(--primary);}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+    gap:18px;
+  }
+
+  /* ============ CARD ============ */
+  .card{
+    background:var(--card);border-radius:var(--radius);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    padding:20px;
+    display:flex;flex-direction:column;gap:13px;
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s;
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;right:0;left:0;height:4px;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    transform:scaleX(0);transform-origin:right;transition:transform .3s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#cbd5e1;}
+  .card:hover::before{transform:scaleX(1);}
+
+  .card-head{display:flex;gap:13px;align-items:flex-start;}
+  .avatar{
+    flex-shrink:0;width:48px;height:48px;border-radius:14px;
+    background:linear-gradient(135deg,#e0f2fe,#cffafe);
+    color:var(--primary);display:grid;place-items:center;
+    font-size:1.3rem;font-weight:800;
+    border:1px solid #bae6fd;
+  }
+  .card-head h3{
+    font-size:1.02rem;font-weight:800;line-height:1.4;
+    color:var(--text);margin-bottom:3px;
+  }
+  .specialty{
+    font-size:.8rem;color:var(--primary);font-weight:600;
+    line-height:1.5;
+  }
+
+  .tag{
+    align-self:flex-start;
+    font-size:.72rem;font-weight:700;
+    background:var(--primary-light);color:var(--primary-dark);
+    padding:4px 11px;border-radius:999px;
+    border:1px solid #bae6fd;
+  }
+
+  .addr{
+    display:flex;gap:8px;align-items:flex-start;
+    font-size:.83rem;color:var(--muted);font-weight:500;
+    background:#f8fafc;border:1px dashed #e2e8f0;
+    border-radius:10px;padding:9px 12px;
+  }
+  .addr svg{flex-shrink:0;width:15px;height:15px;margin-top:4px;stroke:var(--accent);}
+
+  .phones{display:flex;flex-direction:column;gap:8px;margin-top:auto;}
+  .phone-row{display:flex;gap:8px;align-items:center;}
+
+  .phone{
+    flex:1;display:flex;align-items:center;gap:8px;
+    text-decoration:none;
+    background:#f0fdfa;color:#0f766e;
+    border:1px solid #99f6e4;border-radius:10px;
+    padding:9px 12px;font-size:.87rem;font-weight:700;
+    font-variant-numeric:tabular-nums;
+    direction:ltr;justify-content:center;
+    transition:.18s;
+  }
+  .phone:hover{background:#ccfbf1;border-color:#5eead4;transform:translateY(-1px);}
+  .phone svg{width:15px;height:15px;stroke:currentColor;flex-shrink:0;}
+
+  .wa{
+    flex-shrink:0;width:39px;height:39px;border-radius:10px;
+    display:grid;place-items:center;
+    background:#dcfce7;border:1px solid #86efac;
+    transition:.18s;
+  }
+  .wa:hover{background:#bbf7d0;transform:translateY(-1px);}
+  .wa svg{width:19px;height:19px;fill:#16a34a;}
+
+  .no-phone{
+    font-size:.83rem;color:#b45309;font-weight:600;
+    background:#fffbeb;border:1px dashed #fcd34d;
+    border-radius:10px;padding:9px 12px;text-align:center;
+  }
+
+  /* ============ EMPTY ============ */
+  .empty{
+    grid-column:1/-1;text-align:center;padding:60px 20px;
+    background:#fff;border-radius:var(--radius);
+    border:1px dashed #cbd5e1;color:var(--muted);
+  }
+  .empty .ico{font-size:3rem;margin-bottom:10px;opacity:.6;}
+  .empty b{display:block;font-size:1.05rem;color:var(--text);margin-bottom:6px;}
+
+  /* ============ NOTE ============ */
+  .note{
+    max-width:1180px;margin:0 auto 40px;padding:0 18px;
+  }
+  .note-inner{
+    background:#fffbeb;border:1px solid #fde68a;border-radius:14px;
+    padding:16px 20px;font-size:.85rem;color:#92400e;font-weight:500;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .note-inner span{font-size:1.1rem;line-height:1.3;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:#0f172a;color:#cbd5e1;
+    padding:44px 22px 26px;text-align:center;
+  }
+  footer h3{
+    color:#fff;font-size:1.05rem;font-weight:800;margin-bottom:8px;
+  }
+  footer p{font-size:.86rem;opacity:.75;max-width:520px;margin:0 auto 22px;}
+
+  .dev-card{
+    display:inline-flex;align-items:center;gap:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;padding:14px 22px;flex-wrap:wrap;
+    justify-content:center;
+  }
+  .dev-avatar{
+    width:46px;height:46px;border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:1rem;
+  }
+  .dev-info{text-align:right;}
+  .dev-info b{color:#fff;display:block;font-size:.95rem;}
+  .dev-info small{font-size:.75rem;opacity:.7;}
+
+  .dev-wa{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#16a34a;color:#fff;text-decoration:none;
+    padding:10px 18px;border-radius:999px;font-weight:700;font-size:.87rem;
+    transition:.2s;
+  }
+  .dev-wa:hover{background:#15803d;transform:translateY(-2px);}
+  .dev-wa svg{width:17px;height:17px;fill:#fff;}
+
+  .copyright{
+    margin-top:26px;padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.1);
+    font-size:.78rem;opacity:.55;
+  }
+
+  /* ============ FLOATING WHATSAPP ============ */
+  .float-wa{
+    position:fixed;bottom:22px;left:22px;z-index:999;
+    width:56px;height:56px;border-radius:50%;
+    background:#25d366;display:grid;place-items:center;
+    box-shadow:0 8px 24px rgba(37,211,102,.45);
+    text-decoration:none;transition:.25s;
+    animation:pulse 2.5s infinite;
+  }
+  .float-wa:hover{transform:scale(1.1);}
+  .float-wa svg{width:30px;height:30px;fill:#fff;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45);}
+    50%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 12px rgba(37,211,102,.12);}
+  }
+
+  /* ============ BACK TO TOP ============ */
+  .to-top{
+    position:fixed;bottom:22px;right:22px;z-index:998;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--primary);color:#fff;border:none;cursor:pointer;
+    display:grid;place-items:center;
+    box-shadow:0 6px 18px rgba(14,116,144,.4);
+    opacity:0;visibility:hidden;transition:.3s;
+  }
+  .to-top.show{opacity:1;visibility:visible;}
+  .to-top:hover{background:var(--primary-dark);}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:640px){
+    .hero{padding:34px 18px 80px;}
+    .grid{grid-template-columns:1fr;}
+    .topbar{justify-content:center;text-align:center;}
+    .chips{gap:7px;}
+    .chip{font-size:.78rem;padding:8px 13px;}
+    .float-wa{width:50px;height:50px;bottom:16px;left:16px;}
+    .float-wa svg{width:26px;height:26px;}
+    .to-top{width:42px;height:42px;bottom:16px;right:16px;}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">🩺</div>
+      <div>
+        خميس مليانة الطبية
+        <small>دليل الأطباء والعيادات – عين الدفلى</small>
+      </div>
+    </div>
+    <div class="top-links">
+      <a href="#doctors">قائمة الأطباء</a>
+      <a href="#contact">اتصل بنا</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>دليل <span>أطباء خميس مليانة</span> الشامل</h1>
+    <p>جميع الأطباء والمختصين والعيادات في بلدية خميس مليانة – أرقام الهاتف، العناوين والتخصصات في مكان واحد.</p>
+
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path>
+      </svg>
+      <input type="text" id="searchInput" placeholder="ابحث عن طبيب، تخصص، أو حي… (مثال: أسنان، سيدي معمر)" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="stat"><b id="statDoctors">0</b><span>طبيب ومختص</span></div>
+  <div class="stat"><b id="statSpecialties">0</b><span>تخصص طبي</span></div>
+  <div class="stat"><b id="statPhones">0</b><span>رقم هاتف</span></div>
+  <div class="stat"><b>24/7</b><span>خدمة البحث</span></div>
+</div>
+
+<!-- ================= FILTERS ================= -->
+<section class="filters">
+  <h2>🔎 تصفية حسب التخصص</h2>
+  <div class="chips" id="chips"></div>
+</section>
+
+<!-- ================= MAIN ================= -->
+<main id="doctors">
+  <div class="results-bar">
+    <div>النتائج: <b id="resultCount">0</b> طبيب / عيادة</div>
+    <div id="activeFilterLabel"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- ================= NOTE ================= -->
+<div class="note">
+  <div class="note-inner">
+    <span>⚠️</span>
+    <div>
+      <b>ملاحظة هامة:</b> هذه المعلومات تم جمعها من صفحة «أخبار شوارع خميس مليانة». يُنصح بالاتصال مسبقًا للتأكد من الأرقام والمواعيد قبل التنقل. إذا كان لديك رقم أو معلومة غير صحيحة، تواصل معنا لتحديثها.
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <h3>تطوير وتصميم</h3>
+  <p>صفحة احترافية تخدم سكان بلدية خميس مليانة والمناطق المجاورة.</p>
+
+  <div class="dev-card">
+    <div class="dev-avatar">رك</div>
+    <div class="dev-info">
+      <b>ركاب عبد القادر</b>
+      <small>مطوّر المواقع الإلكترونية</small>
+    </div>
+    <a class="dev-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
+      0773375427
+    </a>
+  </div>
+
+  <div class="copyright">
+    © <span id="year"></span> دليل أطباء خميس مليانة — جميع الحقوق محفوظة | تطوير: ركاب عبد القادر
+  </div>
+</footer>
+
+<!-- ================= FLOATING BUTTONS ================= -->
+<a class="float-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener" title="تواصل مع المطوّر على واتساب">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
+</a>
+
+<button class="to-top" id="toTop" title="العودة للأعلى">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+/* ==========================================================
+   بيانات الأطباء — خميس مليانة
+   n: الاسم | s: التخصص | c: التصنيف | a: العنوان | p: الهواتف
+   ========================================================== */
+const DATA = [
+  {n:"داودي", s:"أمراض الكلى والمسالك البولية، عقم الرجال والضعف الجنسي", c:"الكلى والمسالك البولية", a:"حي سيدي معمر (Cité Sidi Maamar)، البلوك الأول، قرب الجامع العتيق", p:["0668046804","027566454"]},
+  {n:"بغدير بوزيد", s:"طب إعادة التأهيل الحركي", c:"الطب الفيزيائي وإعادة التأهيل", a:"", p:["0773024664"]},
+  {n:"س. بوقريعة", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0798257044"]},
+  {n:"عبد الرحيم طالبي", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0696947910"]},
+  {n:"بوكيرة عباسي", s:"طب التوليد وأمراض النساء", c:"النساء والتوليد", a:"", p:["0673238678"]},
+  {n:"مصراوي", s:"طب العيون", c:"طب العيون", a:"", p:["027552222","0659350605"]},
+  {n:"بوڨروش يزيد", s:"أخصائية في أمراض الدم", c:"أمراض الدم", a:"", p:["0542740365"]},
+  {n:"م. اعيوش", s:"أمراض وجراحة الأذن والأنف والحنجرة والحساسية", c:"الأنف والأذن والحنجرة", a:"حي الحرية", p:["027560480"]},
+  {n:"رحماني. م", s:"أخصائية نفسانية", c:"النفسية والعصبية", a:"", p:["0555851942"]},
+  {n:"يعقوب بوالشحم", s:"طبيب الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["0698909909"]},
+  {n:"عياد", s:"أمراض الغدد الصماء والسكري", c:"الغدد الصماء والسكري", a:"", p:["0770781655"]},
+  {n:"د. بريك. غ", s:"عيادة أمراض الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["0670309444"]},
+  {n:"عيادة الزهراء — حطابي عمار", s:"التكفل النفسي والأرطفوني المختص", c:"النفسية والعصبية", a:"", p:["0792094769"]},
+  {n:"بسكري حمزة", s:"الأمراض النفسية والعصبية", c:"النفسية والعصبية", a:"حي سيدي معمر", p:["0541082163"]},
+  {n:"ڨنيش", s:"طب العيون", c:"طب العيون", a:"حي سيدي معمر", p:["027566468"]},
+  {n:"ف. مخاطي", s:"طبيبة القلب", c:"أمراض القلب", a:"حي سيدي معمر", p:["0668435888"]},
+  {n:"مداني. ر", s:"أمراض النساء والتوليد", c:"النساء والتوليد", a:"", p:["0550216065"]},
+  {n:"س. خماش", s:"طب الأطفال، الربو والحساسية", c:"طب الأطفال", a:"", p:["0541960656"]},
+  {n:"مروان", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["027560605"]},
+  {n:"بن يحيى", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0542572760"]},
+  {n:"بوعزدرية سمير", s:"اختصاصي في طب وجراحة العظام والمفاصل", c:"العظام والمفاصل", a:"حي السلام", p:["027568384","0556246991"]},
+  {n:"بلحاج ق. أ", s:"الأمراض الصدرية والتنفسية والحساسية", c:"الصدرية والتنفس", a:"", p:[]},
+  {n:"البروفيسور م. راحم", s:"جراحة العظام والمفاصل", c:"العظام والمفاصل", a:"حي سيتي مارشي، وسط المدينة", p:["028788899","0771273045"]},
+  {n:"طبيبة أسنان — أمراض اللثة", s:"طب الأسنان، مختصة في أمراض اللثة", c:"طب الأسنان", a:"حي سيتي مارشي، وسط المدينة", p:["0556039747"]},
+  {n:"نويس. أ", s:"أمراض القلب والشرايين", c:"أمراض القلب", a:"حي السلام", p:["0551703744","0654329388"]},
+  {n:"نويزة أناس", s:"طب وجراحة العيون", c:"طب العيون", a:"", p:["0555573093","0552177693"]},
+  {n:"نجاري م. ع", s:"مختص في طب وجراحة الأعين", c:"طب العيون", a:"", p:["027567571"]},
+  {n:"خلفاوي زوجة علي أوصالح", s:"أمراض القلب والشرايين", c:"أمراض القلب", a:"", p:["027558812","0561004737"]},
+  {n:"خرفي محمد", s:"طبيب الجلد", c:"الجلد", a:"", p:["0664582423"]},
+  {n:"راحم نصر الدين", s:"أمراض الجهاز الهضمي والكبد", c:"الجهاز الهضمي والكبد", a:"حي سيتي مارشي، وسط المدينة", p:["0774011075","027561949"]},
+  {n:"كلال نبيل", s:"اختصاصي في طب الأطفال", c:"طب الأطفال", a:"", p:["0553995472"]},
+  {n:"حاج صدوق م. س", s:"أمراض الرئة والتنفس والحساسية", c:"الصدرية والتنفس", a:"", p:["0778618719","0558254330"]},
+  {n:"بوهدة رضا", s:"مرض السكري والغدد الصماء", c:"الغدد الصماء والسكري", a:"", p:["0799090761","0560550027"]},
+  {n:"واضح", s:"أمراض الروماتيزم والعظام والمفاصل", c:"العظام والمفاصل", a:"", p:["027552154","0772446059"]},
+  {n:"فارسي", s:"الطب الفيزيائي وإعادة التأهيل", c:"الطب الفيزيائي وإعادة التأهيل", a:"أمام محطة المسافرين", p:["0551395203"]},
+  {n:"رضا حسان", s:"طبيب عام", c:"طب عام", a:"حي النجمة", p:["027566579","0556428351"]},
+  {n:"بن رقية", s:"طبيبة الأسنان", c:"طب الأسنان", a:"حي السلام", p:["0555146205"]},
+  {n:"عبد النور عباس", s:"طبيب عام — ختان، ECG، حجامة، PRP، هيدرا فيشل، تلقيح، استشارات الذاكرة", c:"طب عام", a:"حي سيدي معمر", p:["0661421699"]},
+  {n:"ف. شرشالي", s:"الطب الداخلي، أمراض القلب والضغط الدموي", c:"أمراض القلب", a:"", p:["027568590","0660033703"]},
+  {n:"خليف محمد", s:"طبيب أخصائي", c:"طب عام", a:"", p:["027563111"]},
+  {n:"وليد عاشور", s:"اختصاصي الأنف والحنجرة", c:"الأنف والأذن والحنجرة", a:"", p:["0552770063"]},
+  {n:"بوحرود", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0552503602"]},
+  {n:"جابر. س", s:"أمراض النساء والتوليد", c:"النساء والتوليد", a:"", p:["0556630222"]},
+  {n:"بومدين حسام الدين", s:"اختصاصي المخ والأعصاب والعضلات", c:"النفسية والعصبية", a:"حي السلام", p:["0555611100","027568521"]},
+  {n:"مصطفى مخاطري", s:"طب عام", c:"طب عام", a:"", p:["0664881620"]},
+  {n:"بناي أ", s:"طب عام", c:"طب عام", a:"", p:["027568433"]},
+  {n:"عربوز الهادي", s:"طب وجراحة العظام والمفاصل والروماتيزم", c:"العظام والمفاصل", a:"حي سيدي معمر", p:["0550061120"]},
+  {n:"شريفة طيبوني (Dr. Cherifa Taibouni)", s:"أمراض الرئة والتنفس", c:"الصدرية والتنفس", a:"حي سيدي معمر، قدام الطاكسيات", p:["0657443440"]},
+  {n:"عيادة شاوشي والدكتورة عوفي", s:"طب عام، استعجالات طبية، تغذية طبية", c:"طب عام", a:"حي السلام", p:["027569457","0659090443"]},
+  {n:"عيادة الونشريس", s:"مؤسسة استشفائية خاصة — جراحة، ولادة، رعاية حديثي الولادة، أشعة 24 ساعة (CNAS / CASNOS)", c:"مؤسسات صحية", a:"حي الحرية — وفرع بحي القايد (950 مسكن)", p:["027552463","0550910606","0560970892"]},
+  {n:"المؤسسة العمومية الاستشفائية خميس مليانة", s:"مستشفى عمومي", c:"مؤسسات صحية", a:"خميس مليانة", p:["027559155"]},
+  {n:"مركز التصوير الطبي الشفاء (خبزي سابقًا)", s:"مركز تصوير طبي", c:"التصوير الطبي", a:"", p:["0540831881"]},
+  {n:"عيادة البسمة", s:"عيادة طبية", c:"مؤسسات صحية", a:"", p:["0560970892"]}
+];
+
+/* ============ أدوات مساعدة ============ */
+const norm = str => (str || "")
+  .replace(/[\u064B-\u0652\u0670\u0640]/g, "")   // إزالة التشكيل
+  .replace(/[أإآٱ]/g, "ا")
+  .replace(/ى/g, "ي")
+  .replace(/ة/g, "ه")
+  .replace(/ؤ/g, "و")
+  .replace(/ئ/g, "ي")
+  .toLowerCase()
+  .trim();
+
+const digits = n => n.replace(/\D/g, "");
+const telHref = n => {
+  let d = digits(n);
+  if (d.startsWith("0")) d = "213" + d.slice(1);
+  return "tel:+" + d;
+};
+const isMobile = n => /^0[5-7]/.test(digits(n));
+const waHref = n => "https://wa.me/" + ("213" + digits(n).slice(1));
+
+const initial = name => {
+  const clean = name.replace(/^(البروفيسور|الدكتور|الدكتورة|الطبيب|الطبيبة|الحكيم|الحكيمة|عيادة)\s+/,"").trim();
+  return clean.charAt(0) || "🩺";
+};
+
+/* ============ عناصر DOM ============ */
+const grid        = document.getElementById("grid");
+const chipsBox    = document.getElementById("chips");
+const searchInput = document.getElementById("searchInput");
+const resultCount = document.getElementById("resultCount");
+const filterLabel = document.getElementById("activeFilterLabel");
+
+let activeCat = "الكل";
+let query = "";
+
+/* ============ الإحصائيات ============ */
+document.getElementById("statDoctors").textContent = DATA.length;
+document.getElementById("statSpecialties").textContent = new Set(DATA.map(d => d.c)).size;
+document.getElementById("statPhones").textContent = DATA.reduce((a, d) => a + d.p.length, 0);
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ============ بناء أزرار التصفية ============ */
+function buildChips() {
+  const counts = {};
+  DATA.forEach(d => counts[d.c] = (counts[d.c] || 0) + 1);
+
+  const cats = ["الكل", ...Object.keys(counts).sort((a, b) => counts[b] - counts[a])];
+
+  chipsBox.innerHTML = cats.map(cat => {
+    const num = cat === "الكل" ? DATA.length : counts[cat];
+    return `<button class="chip${cat === "الكل" ? " active" : ""}" data-cat="${cat}">
+              ${cat} <span class="cnt">${num}</span>
+            </button>`;
+  }).join("");
+
+  chipsBox.querySelectorAll(".chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      chipsBox.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCat = btn.dataset.cat;
+      render();
+    });
+  });
+}
+
+/* ============ بطاقة الطبيب ============ */
+function cardHTML(d) {
+  const phones = d.p.length
+    ? d.p.map(ph => `
+        <div class="phone-row">
+          <a class="phone" href="${telHref(ph)}" title="اتصل بـ ${ph}">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            ${ph}
+          </a>
+          ${isMobile(ph) ? `
+          <a class="wa" href="${waHref(ph)}" target="_blank" rel="noopener" title="واتساب">
+            <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
+          </a>` : ""}
+        </div>`).join("")
+    : `<div class="no-phone">📵 الرقم غير متوفر حاليًا</div>`;
+
+  return `
+  <article class="card">
+    <div class="card-head">
+      <div class="avatar">${initial(d.n)}</div>
+      <div>
+        <h3>${d.n}</h3>
+        <div class="specialty">${d.s}</div>
+      </div>
+    </div>
+
+    <span class="tag">${d.c}</span>
+
+    ${d.a ? `
+    <div class="addr">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span>${d.a}</span>
+    </div>` : ""}
+
+    <div class="phones">${phones}</div>
+  </article>`;
+}
+
+/* ============ العرض ============ */
+function render() {
+  const q = norm(query);
+
+  const filtered = DATA.filter(d => {
+    const matchCat = activeCat === "الكل" || d.c === activeCat;
+    if (!matchCat) return false;
+    if (!q) return true;
+    const haystack = norm([d.n, d.s, d.c, d.a, d.p.join(" ")].join(" "));
+    return haystack.includes(q);
+  });
+
+  resultCount.textContent = filtered.length;
+  filterLabel.textContent = activeCat === "الكل" ? "" : "التخصص: " + activeCat;
+
+  grid.innerHTML = filtered.length
+    ? filtered.map(cardHTML).join("")
+    : `<div class="empty">
+         <div class="ico">🔍</div>
+         <b>لا توجد نتائج مطابقة</b>
+         جرّب البحث بكلمة أخرى أو اختر تخصصًا مختلفًا.
+       </div>`;
+}
+
+/* ============ الأحداث ============ */
+let debounce;
+searchInput.addEventListener("input", e => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => { query = e.target.value; render(); }, 160);
+});
+
+/* زر العودة للأعلى */
+const toTop = document.getElementById("toTop");
+window.addEventListener("scroll", () => {
+  toTop.classList.toggle("show", window.scrollY > 500);
+});
+toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+/* ============ التشغيل ============ */
+buildChips();
+render();
+</script>
+
+</body>
+</html>
