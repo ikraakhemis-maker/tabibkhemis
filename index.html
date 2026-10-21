@@ -4,448 +4,185 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0e7490">
-<title>دليل الأطباء – خميس مليانة | Khemis Miliana Doctors</title>
-<meta name="description" content="دليل احترافي شامل لأطباء وعيادات بلدية خميس مليانة، ولاية عين الدفلى – أرقام الهاتف، العناوين والتخصصات.">
+<title>دليل الأطباء – خميس مليانة</title>
+<meta name="description" content="دليل احترافي شامل لأطباء وعيادات بلدية خميس مليانة – أرقام الهاتف، العناوين والتخصصات.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --primary:#0e7490;
-    --primary-dark:#155e75;
-    --primary-light:#e0f2fe;
-    --accent:#06b6d4;
-    --green:#16a34a;
-    --bg:#f1f5f9;
-    --card:#ffffff;
-    --text:#0f172a;
-    --muted:#64748b;
-    --border:#e2e8f0;
-    --shadow:0 4px 16px rgba(15,23,42,.06);
-    --shadow-lg:0 12px 32px rgba(15,23,42,.12);
+    --primary:#0e7490; --primary-dark:#155e75; --primary-light:#e0f2fe;
+    --accent:#06b6d4; --green:#16a34a; --bg:#f1f5f9; --card:#fff;
+    --text:#0f172a; --muted:#64748b; --border:#e2e8f0;
+    --shadow:0 4px 16px rgba(15,23,42,.06); --shadow-lg:0 12px 32px rgba(15,23,42,.12);
     --radius:16px;
   }
-
   *{margin:0;padding:0;box-sizing:border-box;}
-
   html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
+  body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-  body{
-    font-family:'Cairo',system-ui,-apple-system,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-
-  /* ============ HEADER ============ */
-  header{
-    background:linear-gradient(135deg,#0e7490 0%,#0891b2 50%,#06b6d4 100%);
-    color:#fff;
-    padding:0;
-    position:relative;
-    overflow:hidden;
-  }
-  header::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:radial-gradient(circle at 20% 20%, rgba(255,255,255,.13) 0%, transparent 45%),
-                     radial-gradient(circle at 85% 70%, rgba(255,255,255,.10) 0%, transparent 40%);
-    pointer-events:none;
-  }
-  .topbar{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:12px;padding:12px 18px;
-    border-bottom:1px solid rgba(255,255,255,.15);
-    position:relative;z-index:2;flex-wrap:wrap;
-  }
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:0.95rem;}
-  .brand .logo{
-    width:38px;height:38px;border-radius:10px;
-    background:rgba(255,255,255,.18);
-    display:grid;place-items:center;font-size:1.2rem;
-    border:1px solid rgba(255,255,255,.3);
-    backdrop-filter:blur(6px);
-    flex-shrink:0;
-  }
+  /* HEADER */
+  header{background:linear-gradient(135deg,#0e7490,#0891b2,#06b6d4);color:#fff;position:relative;overflow:hidden;}
+  header::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.13) 0%,transparent 45%),radial-gradient(circle at 85% 70%,rgba(255,255,255,.10) 0%,transparent 40%);pointer-events:none;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.15);position:relative;z-index:2;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.95rem;}
+  .brand .logo{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.2rem;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px);flex-shrink:0;}
   .brand small{display:block;font-weight:400;font-size:.7rem;opacity:.85;line-height:1.2;}
-
   .top-links{display:flex;gap:8px;flex-wrap:wrap;}
-  .top-links a{
-    color:#fff;text-decoration:none;font-size:0.78rem;font-weight:600;
-    padding:7px 14px;border-radius:999px;
-    background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.22);
-    transition:.2s;
-    min-height:36px;
-    display:inline-flex;align-items:center;
-    touch-action:manipulation;
-  }
-  .top-links a:hover{background:rgba(255,255,255,.28);transform:translateY(-1px);}
+  .top-links a{color:#fff;text-decoration:none;font-size:.78rem;font-weight:600;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);transition:.2s;min-height:36px;display:inline-flex;align-items:center;touch-action:manipulation;}
+  .top-links a:hover{background:rgba(255,255,255,.28);}
 
-  /* ============ HERO ============ */
-  .hero{
-    padding:32px 18px 80px;
-    text-align:center;position:relative;z-index:2;
-  }
-  .hero h1{
-    font-size:clamp(1.35rem,4vw,2.4rem);
-    font-weight:800;letter-spacing:-.5px;margin-bottom:8px;
-    line-height:1.3;
-  }
+  /* HERO */
+  .hero{padding:32px 18px 80px;text-align:center;position:relative;z-index:2;}
+  .hero h1{font-size:clamp(1.35rem,4vw,2.4rem);font-weight:800;letter-spacing:-.5px;margin-bottom:8px;line-height:1.3;}
   .hero h1 span{color:#a5f3fc;}
-  .hero p{
-    max-width:620px;margin:0 auto 22px;
-    font-size:clamp(0.82rem,2vw,1rem);
-    opacity:.92;font-weight:400;
-    line-height:1.6;
-  }
+  .hero p{max-width:620px;margin:0 auto 22px;font-size:clamp(.82rem,2vw,1rem);opacity:.92;line-height:1.6;}
 
-  /* ============ SEARCH ============ */
-  .search-wrap{
-    max-width:620px;margin:0 auto;position:relative;
-  }
-  .search-wrap svg{
-    position:absolute;right:18px;top:50%;transform:translateY(-50%);
-    width:18px;height:18px;stroke:#94a3b8;pointer-events:none;
-  }
-  #searchInput{
-    width:100%;padding:15px 50px 15px 18px;
-    border-radius:999px;border:none;
-    font-family:inherit;font-size:0.95rem;font-weight:500;
-    color:var(--text);
-    box-shadow:0 10px 30px rgba(8,47,73,.28);
-    outline:none;transition:.25s;
-    min-height:52px;
-    touch-action:manipulation;
-  }
-  #searchInput::placeholder{color:#94a3b8;font-weight:400;font-size:0.85rem;}
+  /* SEARCH */
+  .search-wrap{max-width:620px;margin:0 auto;position:relative;}
+  .search-wrap svg{position:absolute;right:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#94a3b8;pointer-events:none;}
+  #searchInput{width:100%;padding:15px 50px 15px 18px;border-radius:999px;border:none;font-family:inherit;font-size:.95rem;font-weight:500;color:var(--text);box-shadow:0 10px 30px rgba(8,47,73,.28);outline:none;transition:.25s;min-height:52px;}
+  #searchInput::placeholder{color:#94a3b8;font-size:.85rem;}
   #searchInput:focus{box-shadow:0 0 0 4px rgba(255,255,255,.35),0 12px 34px rgba(8,47,73,.3);}
 
-  /* ============ STATS ============ */
-  .stats{
-    max-width:1100px;margin:-50px auto 0;padding:0 16px;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:12px;position:relative;z-index:3;
-  }
-  .stat{
-    background:var(--card);border-radius:var(--radius);
-    padding:14px 12px;text-align:center;
-    box-shadow:var(--shadow);border:1px solid var(--border);
-  }
+  /* STATS */
+  .stats{max-width:1100px;margin:-50px auto 0;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;position:relative;z-index:3;}
+  .stat{background:var(--card);border-radius:var(--radius);padding:14px 12px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border);}
   .stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1.2;}
   .stat span{font-size:.75rem;color:var(--muted);font-weight:600;}
 
-  /* ============ FILTERS ============ */
-  .filters{
-    max-width:1180px;margin:28px auto 0;padding:0 16px;
-  }
-  .filters h2{
-    font-size:.85rem;font-weight:700;color:var(--muted);
-    margin-bottom:10px;display:flex;align-items:center;gap:6px;
-  }
-  .chips{
-    display:flex;gap:7px;flex-wrap:wrap;
-  }
-  .chip{
-    font-family:inherit;font-size:0.78rem;font-weight:600;
-    padding:8px 14px;border-radius:999px;cursor:pointer;
-    background:#fff;color:#334155;
-    border:1.5px solid var(--border);
-    transition:.18s;white-space:nowrap;
-    min-height:44px;
-    display:inline-flex;align-items:center;gap:5px;
-    touch-action:manipulation;
-  }
+  /* FILTERS */
+  .filters{max-width:1180px;margin:28px auto 0;padding:0 16px;}
+  .filters h2{font-size:.85rem;font-weight:700;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;}
+  .chip{font-family:inherit;font-size:.78rem;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;background:#fff;color:#334155;border:1.5px solid var(--border);transition:.18s;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;gap:5px;touch-action:manipulation;}
   .chip:hover{border-color:var(--accent);color:var(--primary);}
-  .chip.active{
-    background:linear-gradient(135deg,var(--primary),var(--accent));
-    color:#fff;border-color:transparent;
-    box-shadow:0 6px 16px rgba(14,116,144,.28);
-  }
-  .chip .cnt{
-    display:inline-block;
-    background:rgba(0,0,0,.08);border-radius:999px;
-    padding:0 6px;font-size:.7rem;font-weight:700;
-    min-width:20px;text-align:center;
-  }
+  .chip.active{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(14,116,144,.28);}
+  .chip .cnt{display:inline-block;background:rgba(0,0,0,.08);border-radius:999px;padding:0 6px;font-size:.7rem;font-weight:700;min-width:20px;text-align:center;}
   .chip.active .cnt{background:rgba(255,255,255,.25);}
 
-  /* ============ RESULTS ============ */
+  /* RESULTS */
   main{max-width:1180px;margin:0 auto;padding:22px 16px 50px;}
-  .results-bar{
-    display:flex;justify-content:space-between;align-items:center;
-    gap:10px;flex-wrap:wrap;margin-bottom:16px;
-    font-size:.82rem;color:var(--muted);font-weight:600;
-  }
+  .results-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;font-size:.82rem;color:var(--muted);font-weight:600;}
   .results-bar b{color:var(--primary);}
+  .results-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-    gap:16px;
-  }
+  .source-badge{display:inline-flex;align-items:center;gap:4px;font-size:.68rem;padding:3px 9px;border-radius:999px;background:#dcfce7;color:#166534;font-weight:700;}
+  .source-badge.local{background:#fef3c7;color:#92400e;}
+  .source-badge.loading{background:#e0f2fe;color:#0369a1;}
 
-  /* ============ CARD ============ */
-  .card{
-    background:var(--card);border-radius:var(--radius);
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
-    padding:18px;
-    display:flex;flex-direction:column;gap:12px;
-    transition:transform .22s ease,box-shadow .22s ease,border-color .22s;
-    position:relative;overflow:hidden;
-    min-width:0;
-  }
-  .card::before{
-    content:"";position:absolute;top:0;right:0;left:0;height:4px;
-    background:linear-gradient(90deg,var(--primary),var(--accent));
-    transform:scaleX(0);transform-origin:right;transition:transform .3s;
-  }
+  .refresh-btn{background:#fff;border:1.5px solid var(--border);border-radius:50%;width:38px;height:38px;display:grid;place-items:center;cursor:pointer;transition:.2s;color:var(--muted);flex-shrink:0;touch-action:manipulation;}
+  .refresh-btn:hover{border-color:var(--accent);color:var(--primary);}
+  .refresh-btn.loading svg{animation:spin .8s linear infinite;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+
+  /* LOADING */
+  .loading{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-weight:600;}
+  .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* CARD */
+  .card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:12px;transition:transform .22s,box-shadow .22s,border-color .22s;position:relative;overflow:hidden;min-width:0;}
+  .card::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transform-origin:right;transition:transform .3s;}
   .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#cbd5e1;}
   .card:hover::before{transform:scaleX(1);}
-
   .card-head{display:flex;gap:11px;align-items:flex-start;min-width:0;}
-  .avatar{
-    flex-shrink:0;width:44px;height:44px;border-radius:12px;
-    background:linear-gradient(135deg,#e0f2fe,#cffafe);
-    color:var(--primary);display:grid;place-items:center;
-    font-size:1.15rem;font-weight:800;
-    border:1px solid #bae6fd;
-  }
-  .card-head h3{
-    font-size:0.95rem;font-weight:800;line-height:1.4;
-    color:var(--text);margin-bottom:2px;
-    word-break:break-word;
-  }
-  .specialty{
-    font-size:0.75rem;color:var(--primary);font-weight:600;
-    line-height:1.5;
-    word-break:break-word;
-  }
-
-  .tag{
-    align-self:flex-start;
-    font-size:0.68rem;font-weight:700;
-    background:var(--primary-light);color:var(--primary-dark);
-    padding:3px 10px;border-radius:999px;
-    border:1px solid #bae6fd;
-    white-space:nowrap;
-  }
-
-  .addr{
-    display:flex;gap:7px;align-items:flex-start;
-    font-size:0.78rem;color:var(--muted);font-weight:500;
-    background:#f8fafc;border:1px dashed #e2e8f0;
-    border-radius:10px;padding:8px 10px;
-    word-break:break-word;
-  }
+  .avatar{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e0f2fe,#cffafe);color:var(--primary);display:grid;place-items:center;font-size:1.15rem;font-weight:800;border:1px solid #bae6fd;}
+  .card-head h3{font-size:.95rem;font-weight:800;line-height:1.4;margin-bottom:2px;word-break:break-word;}
+  .specialty{font-size:.75rem;color:var(--primary);font-weight:600;line-height:1.5;word-break:break-word;}
+  .tag{align-self:flex-start;font-size:.68rem;font-weight:700;background:var(--primary-light);color:var(--primary-dark);padding:3px 10px;border-radius:999px;border:1px solid #bae6fd;white-space:nowrap;}
+  .addr{display:flex;gap:7px;align-items:flex-start;font-size:.78rem;color:var(--muted);font-weight:500;background:#f8fafc;border:1px dashed #e2e8f0;border-radius:10px;padding:8px 10px;word-break:break-word;}
   .addr svg{flex-shrink:0;width:14px;height:14px;margin-top:4px;stroke:var(--accent);}
-
   .phones{display:flex;flex-direction:column;gap:7px;margin-top:auto;}
   .phone-row{display:flex;gap:7px;align-items:center;min-width:0;}
-
-  .phone{
-    flex:1;display:flex;align-items:center;gap:7px;
-    text-decoration:none;
-    background:#f0fdfa;color:#0f766e;
-    border:1px solid #99f6e4;border-radius:10px;
-    padding:9px 10px;font-size:0.82rem;font-weight:700;
-    font-variant-numeric:tabular-nums;
-    direction:ltr;justify-content:center;
-    transition:.18s;
-    min-height:44px;
-    min-width:0;
-    touch-action:manipulation;
-  }
-  .phone:hover{background:#ccfbf1;border-color:#5eead4;transform:translateY(-1px);}
+  .phone{flex:1;display:flex;align-items:center;gap:7px;text-decoration:none;background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4;border-radius:10px;padding:9px 10px;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;direction:ltr;justify-content:center;transition:.18s;min-height:44px;min-width:0;touch-action:manipulation;}
+  .phone:hover{background:#ccfbf1;border-color:#5eead4;}
   .phone svg{width:14px;height:14px;stroke:currentColor;flex-shrink:0;}
-
-  .wa{
-    flex-shrink:0;width:44px;height:44px;border-radius:10px;
-    display:grid;place-items:center;
-    background:#dcfce7;border:1px solid #86efac;
-    transition:.18s;
-    touch-action:manipulation;
-  }
-  .wa:hover{background:#bbf7d0;transform:translateY(-1px);}
+  .wa{flex-shrink:0;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:#dcfce7;border:1px solid #86efac;transition:.18s;touch-action:manipulation;}
+  .wa:hover{background:#bbf7d0;}
   .wa svg{width:20px;height:20px;fill:#16a34a;}
+  .no-phone{font-size:.78rem;color:#b45309;font-weight:600;background:#fffbeb;border:1px dashed #fcd34d;border-radius:10px;padding:9px 10px;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center;}
 
-  .no-phone{
-    font-size:0.78rem;color:#b45309;font-weight:600;
-    background:#fffbeb;border:1px dashed #fcd34d;
-    border-radius:10px;padding:9px 10px;text-align:center;
-    min-height:44px;
-    display:flex;align-items:center;justify-content:center;
-  }
-
-  /* ============ EMPTY ============ */
-  .empty{
-    grid-column:1/-1;text-align:center;padding:50px 18px;
-    background:#fff;border-radius:var(--radius);
-    border:1px dashed #cbd5e1;color:var(--muted);
-  }
+  /* EMPTY */
+  .empty{grid-column:1/-1;text-align:center;padding:50px 18px;background:#fff;border-radius:var(--radius);border:1px dashed #cbd5e1;color:var(--muted);}
   .empty .ico{font-size:2.6rem;margin-bottom:8px;opacity:.6;}
   .empty b{display:block;font-size:1rem;color:var(--text);margin-bottom:5px;}
 
-  /* ============ NOTE ============ */
-  .note{
-    max-width:1180px;margin:0 auto 36px;padding:0 16px;
-  }
-  .note-inner{
-    background:#fffbeb;border:1px solid #fde68a;border-radius:12px;
-    padding:14px 16px;font-size:0.8rem;color:#92400e;font-weight:500;
-    display:flex;gap:9px;align-items:flex-start;
-    line-height:1.6;
-  }
-  .note-inner span{font-size:1rem;line-height:1.3;flex-shrink:0;}
+  /* NOTE */
+  .note{max-width:1180px;margin:0 auto 36px;padding:0 16px;}
+  .note-inner{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px 16px;font-size:.8rem;color:#92400e;font-weight:500;display:flex;gap:9px;align-items:flex-start;line-height:1.6;}
+  .note-inner span{font-size:1rem;flex-shrink:0;}
 
-  /* ============ FOOTER ============ */
-  footer{
-    background:#0f172a;color:#cbd5e1;
-    padding:36px 18px 22px;text-align:center;
-  }
-  footer h3{
-    color:#fff;font-size:1rem;font-weight:800;margin-bottom:6px;
-  }
-  footer p{font-size:0.8rem;opacity:.75;max-width:480px;margin:0 auto 18px;}
-
-  .dev-card{
-    display:inline-flex;align-items:center;gap:12px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:14px;padding:12px 18px;flex-wrap:wrap;
-    justify-content:center;
-    max-width:100%;
-  }
-  .dev-avatar{
-    width:42px;height:42px;border-radius:50%;
-    background:linear-gradient(135deg,var(--primary),var(--accent));
-    display:grid;place-items:center;color:#fff;font-weight:800;font-size:0.9rem;
-    flex-shrink:0;
-  }
+  /* FOOTER */
+  footer{background:#0f172a;color:#cbd5e1;padding:36px 18px 22px;text-align:center;}
+  footer h3{color:#fff;font-size:1rem;font-weight:800;margin-bottom:6px;}
+  footer p{font-size:.8rem;opacity:.75;max-width:480px;margin:0 auto 18px;}
+  .dev-card{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 18px;flex-wrap:wrap;justify-content:center;max-width:100%;}
+  .dev-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff;font-weight:800;font-size:.9rem;flex-shrink:0;}
   .dev-info{text-align:right;}
-  .dev-info b{color:#fff;display:block;font-size:0.9rem;}
-  .dev-info small{font-size:0.7rem;opacity:.7;}
-
-  .dev-wa{
-    display:inline-flex;align-items:center;gap:7px;
-    background:#16a34a;color:#fff;text-decoration:none;
-    padding:10px 16px;border-radius:999px;font-weight:700;font-size:0.82rem;
-    transition:.2s;
-    min-height:44px;
-    touch-action:manipulation;
-  }
-  .dev-wa:hover{background:#15803d;transform:translateY(-2px);}
+  .dev-info b{color:#fff;display:block;font-size:.9rem;}
+  .dev-info small{font-size:.7rem;opacity:.7;}
+  .dev-wa{display:inline-flex;align-items:center;gap:7px;background:#16a34a;color:#fff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:700;font-size:.82rem;transition:.2s;min-height:44px;touch-action:manipulation;}
+  .dev-wa:hover{background:#15803d;}
   .dev-wa svg{width:16px;height:16px;fill:#fff;}
+  .copyright{margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:.72rem;opacity:.55;line-height:1.6;}
 
-  .copyright{
-    margin-top:22px;padding-top:16px;
-    border-top:1px solid rgba(255,255,255,.1);
-    font-size:0.72rem;opacity:.55;
-    line-height:1.6;
-  }
-
-  /* ============ FLOATING WHATSAPP ============ */
-  .float-wa{
-    position:fixed;bottom:18px;left:18px;z-index:999;
-    width:54px;height:54px;border-radius:50%;
-    background:#25d366;display:grid;place-items:center;
-    box-shadow:0 8px 24px rgba(37,211,102,.45);
-    text-decoration:none;transition:.25s;
-    animation:pulse 2.5s infinite;
-    touch-action:manipulation;
-  }
+  /* FLOATING */
+  .float-wa{position:fixed;bottom:18px;left:18px;z-index:999;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.45);text-decoration:none;transition:.25s;animation:pulse 2.5s infinite;touch-action:manipulation;}
   .float-wa:hover{transform:scale(1.1);}
   .float-wa svg{width:28px;height:28px;fill:#fff;}
-  @keyframes pulse{
-    0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45);}
-    50%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 12px rgba(37,211,102,.12);}
-  }
-
-  /* ============ BACK TO TOP ============ */
-  .to-top{
-    position:fixed;bottom:18px;right:18px;z-index:998;
-    width:46px;height:46px;border-radius:50%;
-    background:var(--primary);color:#fff;border:none;cursor:pointer;
-    display:grid;place-items:center;
-    box-shadow:0 6px 18px rgba(14,116,144,.4);
-    opacity:0;visibility:hidden;transition:.3s;
-    min-height:44px;min-width:44px;
-    touch-action:manipulation;
-  }
+  @keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45);}50%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 12px rgba(37,211,102,.12);}}
+  .to-top{position:fixed;bottom:18px;right:18px;z-index:998;width:46px;height:46px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(14,116,144,.4);opacity:0;visibility:hidden;transition:.3s;min-height:44px;min-width:44px;touch-action:manipulation;}
   .to-top.show{opacity:1;visibility:visible;}
   .to-top:hover{background:var(--primary-dark);}
 
-  /* ============ RESPONSIVE ============ */
+  /* RESPONSIVE */
   @media(max-width:640px){
     .hero{padding:28px 16px 74px;}
     .grid{grid-template-columns:1fr;}
     .topbar{justify-content:center;text-align:center;padding:10px 14px;}
-    .brand{font-size:0.88rem;}
+    .brand{font-size:.88rem;}
     .brand .logo{width:34px;height:34px;font-size:1.05rem;}
-    .top-links a{font-size:0.72rem;padding:6px 12px;min-height:34px;}
-    .chips{gap:6px;}
-    .chip{font-size:0.72rem;padding:7px 12px;min-height:44px;}
+    .top-links a{font-size:.72rem;padding:6px 12px;min-height:34px;}
+    .chip{font-size:.72rem;padding:7px 12px;}
     .stats{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:-44px;}
     .stat b{font-size:1.3rem;}
-    .stat span{font-size:0.7rem;}
+    .stat span{font-size:.7rem;}
     .card{padding:16px;}
-    .avatar{width:40px;height:40px;font-size:1rem;border-radius:10px;}
-    .card-head h3{font-size:0.9rem;}
-    .specialty{font-size:0.72rem;}
+    .avatar{width:40px;height:40px;font-size:1rem;}
+    .card-head h3{font-size:.9rem;}
     .float-wa{width:50px;height:50px;bottom:14px;left:14px;}
     .float-wa svg{width:26px;height:26px;}
     .to-top{width:44px;height:44px;bottom:14px;right:14px;}
   }
-
   @media(max-width:380px){
     .hero h1{font-size:1.25rem;}
-    .hero p{font-size:0.78rem;}
-    #searchInput{font-size:0.85rem;padding:13px 44px 13px 14px;min-height:48px;}
-    #searchInput::placeholder{font-size:0.78rem;}
-    .brand{font-size:0.8rem;}
-    .brand small{font-size:0.62rem;}
-    .top-links a{font-size:0.68rem;padding:5px 10px;}
+    #searchInput{font-size:.85rem;padding:13px 44px 13px 14px;min-height:48px;}
+    .brand{font-size:.8rem;}
     .stats{grid-template-columns:repeat(2,1fr);gap:8px;}
     .stat b{font-size:1.15rem;}
-    .stat span{font-size:0.65rem;}
-    .chip{font-size:0.68rem;padding:6px 10px;}
+    .chip{font-size:.68rem;padding:6px 10px;}
     .card{padding:14px;}
-    .avatar{width:36px;height:36px;font-size:0.9rem;}
-    .card-head h3{font-size:0.85rem;}
-    .specialty{font-size:0.68rem;}
-    .tag{font-size:0.62rem;padding:2px 8px;}
-    .addr{font-size:0.72rem;padding:7px 8px;}
-    .phone{font-size:0.78rem;padding:8px 8px;min-height:44px;}
+    .avatar{width:36px;height:36px;font-size:.9rem;}
+    .card-head h3{font-size:.85rem;}
+    .specialty{font-size:.68rem;}
+    .phone{font-size:.78rem;padding:8px;min-height:44px;}
     .wa{width:44px;height:44px;}
-    .wa svg{width:18px;height:18px;}
-    .dev-card{padding:10px 14px;gap:10px;}
-    .dev-avatar{width:36px;height:36px;font-size:0.8rem;}
-    .dev-info b{font-size:0.82rem;}
-    .dev-info small{font-size:0.65rem;}
-    .dev-wa{font-size:0.78rem;padding:8px 14px;min-height:42px;}
-    .float-wa{width:46px;height:46px;bottom:12px;left:12px;}
-    .float-wa svg{width:24px;height:24px;}
-    .to-top{width:42px;height:42px;bottom:12px;right:12px;}
+    .dev-card{padding:10px 14px;}
+    .dev-wa{font-size:.78rem;padding:8px 14px;}
   }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <div class="topbar">
     <div class="brand">
       <div class="logo">🩺</div>
-      <div>
-        خميس مليانة الطبية
-        <small>دليل الأطباء والعيادات – عين الدفلى</small>
-      </div>
+      <div>خميس مليانة الطبية<small>دليل الأطباء والعيادات – عين الدفلى</small></div>
     </div>
     <div class="top-links">
       <a href="#doctors">قائمة الأطباء</a>
@@ -456,17 +193,13 @@
   <div class="hero">
     <h1>دليل <span>أطباء خميس مليانة</span> الشامل</h1>
     <p>جميع الأطباء والمختصين والعيادات في بلدية خميس مليانة – أرقام الهاتف، العناوين والتخصصات في مكان واحد.</p>
-
     <div class="search-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
       <input type="text" id="searchInput" placeholder="ابحث عن طبيب، تخصص، أو حي…" autocomplete="off" inputmode="search">
     </div>
   </div>
 </header>
 
-<!-- ================= STATS ================= -->
 <div class="stats">
   <div class="stat"><b id="statDoctors">0</b><span>طبيب ومختص</span></div>
   <div class="stat"><b id="statSpecialties">0</b><span>تخصص طبي</span></div>
@@ -474,55 +207,47 @@
   <div class="stat"><b>24/7</b><span>خدمة البحث</span></div>
 </div>
 
-<!-- ================= FILTERS ================= -->
 <section class="filters">
   <h2>🔎 تصفية حسب التخصص</h2>
   <div class="chips" id="chips"></div>
 </section>
 
-<!-- ================= MAIN ================= -->
 <main id="doctors">
   <div class="results-bar">
-    <div>النتائج: <b id="resultCount">0</b> طبيب / عيادة</div>
-    <div id="activeFilterLabel"></div>
+    <div class="results-left">
+      <div>النتائج: <b id="resultCount">…</b> طبيب / عيادة</div>
+      <span id="sourceBadge" class="source-badge loading">…</span>
+      <div id="activeFilterLabel"></div>
+    </div>
+    <button id="refreshBtn" class="refresh-btn" title="تحديث البيانات">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.6"/><polyline points="21 3 21 9 15 9"/></svg>
+    </button>
   </div>
   <div class="grid" id="grid"></div>
 </main>
 
-<!-- ================= NOTE ================= -->
 <div class="note">
   <div class="note-inner">
     <span>⚠️</span>
-    <div>
-      <b>ملاحظة هامة:</b> هذه المعلومات تم جمعها من صفحة «أخبار شوارع خميس مليانة». يُنصح بالاتصال مسبقًا للتأكد من الأرقام والمواعيد قبل التنقل. إذا كان لديك رقم أو معلومة غير صحيحة، تواصل معنا لتحديثها.
-    </div>
+    <div><b>ملاحظة:</b> المعلومات محدّثة من جدول Google Sheets. يُنصح بالاتصال مسبقاً للتأكد من المواعيد. لأي تصحيح، تواصل معنا عبر واتساب.</div>
   </div>
 </div>
 
-<!-- ================= FOOTER ================= -->
 <footer id="contact">
   <h3>تطوير وتصميم</h3>
   <p>صفحة احترافية تخدم سكان بلدية خميس مليانة والمناطق المجاورة.</p>
-
   <div class="dev-card">
     <div class="dev-avatar">رك</div>
-    <div class="dev-info">
-      <b>ركاب عبد القادر</b>
-      <small>مطوّر المواقع الإلكترونية</small>
-    </div>
+    <div class="dev-info"><b>ركاب عبد القادر</b><small>مطوّر المواقع الإلكترونية</small></div>
     <a class="dev-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
       0773375427
     </a>
   </div>
-
-  <div class="copyright">
-    © <span id="year"></span> دليل أطباء خميس مليانة — جميع الحقوق محفوظة | تطوير: ركاب عبد القادر
-  </div>
+  <div class="copyright">© <span id="year"></span> دليل أطباء خميس مليانة — تطوير: ركاب عبد القادر</div>
 </footer>
 
-<!-- ================= FLOATING BUTTONS ================= -->
-<a class="float-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener" title="تواصل مع المطوّر على واتساب">
+<a class="float-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener" title="واتساب المطوّر">
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
 </a>
 
@@ -532,11 +257,13 @@
 
 <script>
 /* ==========================================================
-   بيانات الأطباء — خميس مليانة
-   n: الاسم | s: التخصص | c: التصنيف | a: العنوان | p: الهواتف
+   🔗 رابط Google Sheets (صيغة التصدير CSV)
    ========================================================== */
-const DATA = [
-  {n:"داودي", s:"أمراض الكلى والمسالك البولية، عقم الرجال والضعف الجنسي", c:"الكلى والمسالك البولية", a:"حي سيدي معمر (Cité Sidi Maamar)، البلوك الأول، قرب الجامع العتيق", p:["0668046804","027566454"]},
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/14hbhgdB51DH6Q0TYIeYTscBG0bkZ5waNqbn5Q_HEBYc/export?format=csv&gid=0";
+
+/* ============ بيانات احتياطية (تُعرض إذا فشل الاتصال) ============ */
+const FALLBACK_DATA = [
+  {n:"داودي", s:"أمراض الكلى والمسالك البولية، عقم الرجال والضعف الجنسي", c:"الكلى والمسالك البولية", a:"حي سيدي معمر، البلوك الأول، قرب الجامع العتيق", p:["0668046804","027566454"]},
   {n:"بغدير بوزيد", s:"طب إعادة التأهيل الحركي", c:"الطب الفيزيائي وإعادة التأهيل", a:"", p:["0773024664"]},
   {n:"س. بوقريعة", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0798257044"]},
   {n:"عبد الرحيم طالبي", s:"طب الأسنان", c:"طب الأسنان", a:"", p:["0696947910"]},
@@ -573,8 +300,8 @@ const DATA = [
   {n:"فارسي", s:"الطب الفيزيائي وإعادة التأهيل", c:"الطب الفيزيائي وإعادة التأهيل", a:"أمام محطة المسافرين", p:["0551395203"]},
   {n:"رضا حسان", s:"طبيب عام", c:"طب عام", a:"حي النجمة", p:["027566579","0556428351"]},
   {n:"بن رقية", s:"طبيبة الأسنان", c:"طب الأسنان", a:"حي السلام", p:["0555146205"]},
-  {n:"عبد النور عباس", s:"طبيب عام — ختان، ECG، حجامة، PRP، هيدرا فيشل، تلقيح، استشارات الذاكرة", c:"طب عام", a:"حي سيدي معمر", p:["0661421699"]},
-  {n:"ف. شرشالي", s:"الطب الداخلي، أمراض القلب والضغط الدموي", c:"أمراض القلب", a:"", p:["027568590","0660033703"]},
+  {n:"عبد النور عباس", s:"طبيب عام — ختان، ECG، حجامة، PRP، هيدرا فيشل، تلقيح", c:"طب عام", a:"حي سيدي معمر", p:["0661421699"]},
+  {n:"ف. شرشالي", s:"الطب الداخلي، القلب والضغط الدموي", c:"أمراض القلب", a:"", p:["027568590","0660033703"]},
   {n:"خليف محمد", s:"طبيب أخصائي", c:"طب عام", a:"", p:["027563111"]},
   {n:"وليد عاشور", s:"اختصاصي الأنف والحنجرة", c:"الأنف والأذن والحنجرة", a:"", p:["0552770063"]},
   {n:"بوحرود", s:"طبيبة النساء والتوليد", c:"النساء والتوليد", a:"", p:["0552503602"]},
@@ -583,38 +310,21 @@ const DATA = [
   {n:"مصطفى مخاطري", s:"طب عام", c:"طب عام", a:"", p:["0664881620"]},
   {n:"بناي أ", s:"طب عام", c:"طب عام", a:"", p:["027568433"]},
   {n:"عربوز الهادي", s:"طب وجراحة العظام والمفاصل والروماتيزم", c:"العظام والمفاصل", a:"حي سيدي معمر", p:["0550061120"]},
-  {n:"شريفة طيبوني (Dr. Cherifa Taibouni)", s:"أمراض الرئة والتنفس", c:"الصدرية والتنفس", a:"حي سيدي معمر، قدام الطاكسيات", p:["0657443440"]},
-  {n:"عيادة شاوشي والدكتورة عوفي", s:"طب عام، استعجالات طبية، تغذية طبية", c:"طب عام", a:"حي السلام", p:["027569457","0659090443"]},
-  {n:"عيادة الونشريس", s:"مؤسسة استشفائية خاصة — جراحة، ولادة، رعاية حديثي الولادة، أشعة 24 ساعة (CNAS / CASNOS)", c:"مؤسسات صحية", a:"حي الحرية — وفرع بحي القايد (950 مسكن)", p:["027552463","0550910606","0560970892"]},
-  {n:"المؤسسة العمومية الاستشفائية خميس مليانة", s:"مستشفى عمومي", c:"مؤسسات صحية", a:"خميس مليانة", p:["027559155"]},
-  {n:"مركز التصوير الطبي الشفاء (خبزي سابقًا)", s:"مركز تصوير طبي", c:"التصوير الطبي", a:"", p:["0540831881"]},
+  {n:"شريفة طيبوني", s:"أمراض الرئة والتنفس", c:"الصدرية والتنفس", a:"حي سيدي معمر، قدام الطاكسيات", p:["0657443440"]},
+  {n:"عيادة شاوشي والدكتورة عوفي", s:"طب عام، استعجالات، تغذية", c:"طب عام", a:"حي السلام", p:["027569457","0659090443"]},
+  {n:"عيادة الونشريس", s:"مؤسسة استشفائية خاصة — جراحة، ولادة، أشعة 24 ساعة (CNAS/CASNOS)", c:"مؤسسات صحية", a:"حي الحرية + فرع حي القايد (950 مسكن)", p:["027552463","0550910606","0560970892"]},
+  {n:"المؤسسة العمومية الاستشفائية", s:"مستشفى عمومي", c:"مؤسسات صحية", a:"خميس مليانة", p:["027559155"]},
+  {n:"مركز التصوير الطبي الشفاء", s:"مركز تصوير طبي", c:"التصوير الطبي", a:"", p:["0540831881"]},
   {n:"عيادة البسمة", s:"عيادة طبية", c:"مؤسسات صحية", a:"", p:["0560970892"]}
 ];
 
-/* ============ أدوات مساعدة ============ */
-const norm = str => (str || "")
-  .replace(/[\u064B-\u0652\u0670\u0640]/g, "")
-  .replace(/[أإآٱ]/g, "ا")
-  .replace(/ى/g, "ي")
-  .replace(/ة/g, "ه")
-  .replace(/ؤ/g, "و")
-  .replace(/ئ/g, "ي")
-  .toLowerCase()
-  .trim();
-
-const digits = n => n.replace(/\D/g, "");
-const telHref = n => {
-  let d = digits(n);
-  if (d.startsWith("0")) d = "213" + d.slice(1);
-  return "tel:+" + d;
-};
+/* ============ أدوات ============ */
+const norm = s => (s||"").replace(/[\u064B-\u0652\u0670\u0640]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/ؤ/g,"و").replace(/ئ/g,"ي").toLowerCase().trim();
+const digits = n => n.replace(/\D/g,"");
+const telHref = n => { let d = digits(n); if(d.startsWith("0")) d = "213"+d.slice(1); return "tel:+"+d; };
 const isMobile = n => /^0[5-7]/.test(digits(n));
-const waHref = n => "https://wa.me/" + ("213" + digits(n).slice(1));
-
-const initial = name => {
-  const clean = name.replace(/^(البروفيسور|الدكتور|الدكتورة|الطبيب|الطبيبة|الحكيم|الحكيمة|عيادة)\s+/,"").trim();
-  return clean.charAt(0) || "🩺";
-};
+const waHref = n => "https://wa.me/213"+digits(n).slice(1);
+const initial = name => (name.replace(/^(البروفيسور|الدكتور|الدكتورة|الطبيب|الطبيبة|الحكيم|الحكيمة|عيادة)\s+/,"").trim().charAt(0))||"🩺";
 
 /* ============ عناصر DOM ============ */
 const grid        = document.getElementById("grid");
@@ -622,28 +332,97 @@ const chipsBox    = document.getElementById("chips");
 const searchInput = document.getElementById("searchInput");
 const resultCount = document.getElementById("resultCount");
 const filterLabel = document.getElementById("activeFilterLabel");
+const sourceBadge = document.getElementById("sourceBadge");
+const refreshBtn  = document.getElementById("refreshBtn");
+const toTop       = document.getElementById("toTop");
 
+let DATA = [];
 let activeCat = "الكل";
 let query = "";
 
-/* ============ الإحصائيات ============ */
-document.getElementById("statDoctors").textContent = DATA.length;
-document.getElementById("statSpecialties").textContent = new Set(DATA.map(d => d.c)).size;
-document.getElementById("statPhones").textContent = DATA.reduce((a, d) => a + d.p.length, 0);
-document.getElementById("year").textContent = new Date().getFullYear();
+/* ============ CSV Parser ============ */
+function parseCSV(text) {
+  const rows = []; let row = [], field = "", inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"' && text[i+1] === '"') { field += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else field += c;
+    } else {
+      if (c === '"') inQ = true;
+      else if (c === ',') { row.push(field); field = ""; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ""; }
+      else if (c === '\r') { /* skip */ }
+      else field += c;
+    }
+  }
+  if (field || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
 
-/* ============ بناء أزرار التصفية ============ */
+/* ============ تحميل من Google Sheets ============ */
+async function fetchSheet() {
+  const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  let csv = await res.text();
+  if (csv.charCodeAt(0) === 0xFEFF) csv = csv.slice(1);
+  if (csv.trim().startsWith("<")) throw new Error("الرابط يعيد صفحة HTML بدلاً من CSV");
+  const rows = parseCSV(csv);
+  const data = rows.slice(1)
+    .filter(r => r[0] && r[0].trim())
+    .map(r => ({
+      n: (r[0]||"").trim(),
+      s: (r[1]||"").trim(),
+      c: (r[2]||"").trim() || "طب عام",
+      a: (r[3]||"").trim(),
+      p: (r[4]||"").split("/").map(x=>x.trim()).filter(Boolean)
+    }));
+  if (!data.length) throw new Error("الجدول فارغ");
+  return data;
+}
+
+/* ============ تحميل البيانات ============ */
+async function loadData() {
+  grid.innerHTML = `<div class="loading"><div class="spinner"></div>جاري تحميل بيانات الأطباء…</div>`;
+  resultCount.textContent = "…";
+  sourceBadge.className = "source-badge loading";
+  sourceBadge.textContent = "…";
+
+  try {
+    DATA = await fetchSheet();
+    sourceBadge.className = "source-badge";
+    sourceBadge.textContent = "✓ محدّث";
+    sourceBadge.title = "البيانات محمّلة من Google Sheets";
+  } catch (e) {
+    console.warn("تعذر تحميل Google Sheets:", e.message);
+    DATA = FALLBACK_DATA;
+    sourceBadge.className = "source-badge local";
+    sourceBadge.textContent = "⚠ محلي";
+    sourceBadge.title = "تعذر الاتصال — تُعرض بيانات محفوظة محلياً";
+  }
+
+  updateStats();
+  buildChips();
+  render();
+}
+
+/* ============ الإحصائيات ============ */
+function updateStats() {
+  document.getElementById("statDoctors").textContent = DATA.length;
+  document.getElementById("statSpecialties").textContent = new Set(DATA.map(d=>d.c)).size;
+  document.getElementById("statPhones").textContent = DATA.reduce((a,d)=>a+d.p.length,0);
+}
+
+/* ============ الفلاتر ============ */
 function buildChips() {
   const counts = {};
-  DATA.forEach(d => counts[d.c] = (counts[d.c] || 0) + 1);
-
-  const cats = ["الكل", ...Object.keys(counts).sort((a, b) => counts[b] - counts[a])];
+  DATA.forEach(d => counts[d.c] = (counts[d.c]||0)+1);
+  const cats = ["الكل", ...Object.keys(counts).sort((a,b)=>counts[b]-counts[a])];
 
   chipsBox.innerHTML = cats.map(cat => {
     const num = cat === "الكل" ? DATA.length : counts[cat];
-    return `<button class="chip${cat === "الكل" ? " active" : ""}" data-cat="${cat}">
-              ${cat} <span class="cnt">${num}</span>
-            </button>`;
+    return `<button class="chip${cat===activeCat?" active":""}" data-cat="${cat}">${cat} <span class="cnt">${num}</span></button>`;
   }).join("");
 
   chipsBox.querySelectorAll(".chip").forEach(btn => {
@@ -656,44 +435,26 @@ function buildChips() {
   });
 }
 
-/* ============ بطاقة الطبيب ============ */
+/* ============ بطاقة ============ */
 function cardHTML(d) {
   const phones = d.p.length
     ? d.p.map(ph => `
-        <div class="phone-row">
-          <a class="phone" href="${telHref(ph)}" title="اتصل بـ ${ph}">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            ${ph}
-          </a>
-          ${isMobile(ph) ? `
-          <a class="wa" href="${waHref(ph)}" target="_blank" rel="noopener" title="واتساب">
-            <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
-          </a>` : ""}
-        </div>`).join("")
-    : `<div class="no-phone">📵 الرقم غير متوفر حاليًا</div>`;
+      <div class="phone-row">
+        <a class="phone" href="${telHref(ph)}" title="اتصل بـ ${ph}">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          ${ph}
+        </a>
+        ${isMobile(ph) ? `<a class="wa" href="${waHref(ph)}" target="_blank" rel="noopener" title="واتساب"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg></a>` : ""}
+      </div>`).join("")
+    : `<div class="no-phone">📵 الرقم غير متوفر</div>`;
 
-  return `
-  <article class="card">
+  return `<article class="card">
     <div class="card-head">
       <div class="avatar">${initial(d.n)}</div>
-      <div>
-        <h3>${d.n}</h3>
-        <div class="specialty">${d.s}</div>
-      </div>
+      <div><h3>${d.n}</h3><div class="specialty">${d.s}</div></div>
     </div>
-
     <span class="tag">${d.c}</span>
-
-    ${d.a ? `
-    <div class="addr">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-      </svg>
-      <span>${d.a}</span>
-    </div>` : ""}
-
+    ${d.a ? `<div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${d.a}</span></div>` : ""}
     <div class="phones">${phones}</div>
   </article>`;
 }
@@ -701,13 +462,10 @@ function cardHTML(d) {
 /* ============ العرض ============ */
 function render() {
   const q = norm(query);
-
   const filtered = DATA.filter(d => {
-    const matchCat = activeCat === "الكل" || d.c === activeCat;
-    if (!matchCat) return false;
+    if (activeCat !== "الكل" && d.c !== activeCat) return false;
     if (!q) return true;
-    const haystack = norm([d.n, d.s, d.c, d.a, d.p.join(" ")].join(" "));
-    return haystack.includes(q);
+    return norm([d.n, d.s, d.c, d.a, d.p.join(" ")].join(" ")).includes(q);
   });
 
   resultCount.textContent = filtered.length;
@@ -715,11 +473,7 @@ function render() {
 
   grid.innerHTML = filtered.length
     ? filtered.map(cardHTML).join("")
-    : `<div class="empty">
-         <div class="ico">🔍</div>
-         <b>لا توجد نتائج مطابقة</b>
-         جرّب البحث بكلمة أخرى أو اختر تخصصًا مختلفًا.
-       </div>`;
+    : `<div class="empty"><div class="ico">🔍</div><b>لا توجد نتائج مطابقة</b>جرّب البحث بكلمة أخرى أو اختر تخصصاً مختلفاً.</div>`;
 }
 
 /* ============ الأحداث ============ */
@@ -729,16 +483,20 @@ searchInput.addEventListener("input", e => {
   debounce = setTimeout(() => { query = e.target.value; render(); }, 160);
 });
 
-/* زر العودة للأعلى */
-const toTop = document.getElementById("toTop");
+refreshBtn.addEventListener("click", async () => {
+  refreshBtn.classList.add("loading");
+  await loadData();
+  setTimeout(() => refreshBtn.classList.remove("loading"), 400);
+});
+
 window.addEventListener("scroll", () => {
   toTop.classList.toggle("show", window.scrollY > 500);
 });
 toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-/* ============ التشغيل ============ */
-buildChips();
-render();
+/* ============ تشغيل ============ */
+document.getElementById("year").textContent = new Date().getFullYear();
+loadData();
 </script>
 
 </body>
