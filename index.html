@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0e7490">
+<meta name="theme-color" content="#0f172a">
 <title>دليل الأطباء – الجزائر</title>
 <meta name="description" content="دليل احترافي شامل لأطباء وعيادات الجزائر – أرقام الهاتف، العناوين والتخصصات.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,270 +11,655 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+  /* ============ 1. المتغيرات والأساسيات ============ */
   :root{
     --primary:#0e7490; --primary-dark:#155e75; --primary-light:#e0f2fe;
-    --accent:#06b6d4; --green:#16a34a; --bg:#f1f5f9; --card:#fff;
-    --text:#0f172a; --muted:#64748b; --border:#e2e8f0;
-    --shadow:0 4px 16px rgba(15,23,42,.06); --shadow-lg:0 12px 32px rgba(15,23,42,.12);
-    --radius:16px;
+    --accent:#06b6d4; --accent-2:#22d3ee; --green:#16a34a;
+    --bg:#f1f5f9; --card:#fff; --text:#0f172a; --muted:#64748b;
+    --border:#e2e8f0;
+    --shadow-sm:0 1px 3px rgba(15,23,42,.06);
+    --shadow:0 4px 16px rgba(15,23,42,.07);
+    --shadow-lg:0 12px 32px rgba(15,23,42,.14);
+    --radius:16px; --radius-sm:12px;
+    --sidebar-w:300px; --topbar-h:58px;
+    --sb-1:#0f172a; --sb-2:#0b3b47;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
-  body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    font-family:'Cairo',system-ui,-apple-system,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body.no-scroll{overflow:hidden;}
+  button{font-family:inherit;}
+  a{-webkit-tap-highlight-color:transparent;}
 
-  /* HEADER */
-  header{background:linear-gradient(135deg,#0e7490,#0891b2,#06b6d4);color:#fff;position:relative;overflow:hidden;}
-  header::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.13) 0%,transparent 45%),radial-gradient(circle at 85% 70%,rgba(255,255,255,.10) 0%,transparent 40%);pointer-events:none;}
-  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.15);position:relative;z-index:2;flex-wrap:wrap;}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.95rem;}
-  .brand .logo{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.2rem;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px);flex-shrink:0;}
-  .brand small{display:block;font-weight:400;font-size:.7rem;opacity:.85;line-height:1.2;}
-  .top-links{display:flex;gap:8px;flex-wrap:wrap;}
-  .top-links a{color:#fff;text-decoration:none;font-size:.78rem;font-weight:600;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);transition:.2s;min-height:36px;display:inline-flex;align-items:center;touch-action:manipulation;}
-  .top-links a:hover{background:rgba(255,255,255,.28);}
+  /* ============ 2. الهيكل العام ============ */
+  .app{min-height:100vh;}
+  .main-wrap{min-height:100vh;display:flex;flex-direction:column;}
+
+  /* ============ 3. القائمة الجانبية ============ */
+  .sidebar{
+    position:fixed;top:0;bottom:0;right:0;width:var(--sidebar-w);max-width:88vw;
+    z-index:1200;display:flex;flex-direction:column;
+    background:linear-gradient(180deg,var(--sb-1) 0%,var(--sb-2) 100%);
+    color:#e2e8f0;
+    transform:translateX(105%);
+    transition:transform .32s cubic-bezier(.4,0,.2,1);
+    box-shadow:-10px 0 40px rgba(2,6,23,.4);
+  }
+  .sidebar.open{transform:translateX(0);}
+  .overlay{
+    position:fixed;inset:0;z-index:1100;background:rgba(2,6,23,.55);
+    backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:.3s;
+  }
+  .overlay.show{opacity:1;visibility:visible;}
+
+  .sb-head{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,.09);
+    flex-shrink:0;
+  }
+  .sb-brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .sb-brand .logo{
+    width:40px;height:40px;border-radius:12px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:grid;place-items:center;font-size:1.15rem;
+    box-shadow:0 6px 18px rgba(6,182,212,.35);
+  }
+  .sb-brand b{display:block;font-size:.9rem;color:#fff;font-weight:800;line-height:1.3;}
+  .sb-brand small{display:block;font-size:.68rem;color:#94a3b8;font-weight:500;}
+  .sb-close{
+    width:36px;height:36px;border-radius:10px;flex-shrink:0;cursor:pointer;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+    color:#cbd5e1;display:grid;place-items:center;font-size:1rem;transition:.18s;
+  }
+  .sb-close:hover{background:rgba(255,255,255,.18);color:#fff;}
+
+  .sb-body{flex:1;overflow-y:auto;padding:14px 12px 24px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;}
+  .sb-body::-webkit-scrollbar{width:6px;}
+  .sb-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:99px;}
+  .sb-body::-webkit-scrollbar-track{background:transparent;}
+
+  .sb-nav{display:flex;flex-direction:column;gap:4px;margin-bottom:18px;}
+  .sb-nav a{
+    display:flex;align-items:center;gap:9px;text-decoration:none;
+    padding:10px 12px;border-radius:11px;color:#cbd5e1;
+    font-size:.83rem;font-weight:600;transition:.16s;
+  }
+  .sb-nav a:hover{background:rgba(255,255,255,.07);color:#fff;}
+  .sb-nav a.on{background:rgba(34,211,238,.16);color:#fff;}
+
+  .sb-section{margin-bottom:16px;}
+  .sb-title{
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:.72rem;font-weight:800;color:#7dd3fc;letter-spacing:.3px;
+    text-transform:uppercase;margin:0 6px 8px;
+  }
+  .sb-title .badge{
+    font-size:.62rem;font-weight:700;color:#0f172a;
+    background:var(--accent-2);border-radius:999px;padding:1px 7px;
+  }
+  .sb-scroll{max-height:34vh;overflow-y:auto;display:flex;flex-direction:column;gap:3px;
+    scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;padding-inline-end:2px;}
+  .sb-scroll::-webkit-scrollbar{width:5px;}
+  .sb-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:99px;}
+
+  .sb-item{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:9px 11px;border-radius:10px;cursor:pointer;text-align:right;
+    background:transparent;border:1px solid transparent;color:#cbd5e1;
+    font-size:.8rem;font-weight:600;transition:.16s;min-height:40px;
+  }
+  .sb-item:hover{background:rgba(255,255,255,.07);color:#fff;}
+  .sb-item.active{background:rgba(34,211,238,.16);border-color:rgba(34,211,238,.35);color:#fff;}
+  .sb-item .cnt{
+    font-size:.66rem;font-weight:800;min-width:22px;text-align:center;
+    background:rgba(255,255,255,.12);border-radius:999px;padding:1px 7px;flex-shrink:0;
+  }
+  .sb-item.active .cnt{background:rgba(34,211,238,.32);color:#fff;}
+
+  .sb-reset{
+    width:100%;margin-top:6px;padding:11px;border-radius:11px;cursor:pointer;
+    background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.35);
+    color:#fca5a5;font-weight:700;font-size:.8rem;transition:.18s;min-height:44px;
+  }
+  .sb-reset:hover{background:rgba(239,68,68,.26);color:#fff;}
+
+  .sb-contact{
+    margin-top:16px;padding:12px;border-radius:12px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+    font-size:.72rem;color:#94a3b8;line-height:1.6;
+  }
+  .sb-contact b{display:block;color:#fff;font-size:.8rem;margin-bottom:6px;}
+  .sb-contact a{
+    display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+    background:#16a34a;color:#fff;text-decoration:none;
+    padding:8px 14px;border-radius:999px;font-weight:700;font-size:.76rem;
+    min-height:40px;transition:.18s;
+  }
+  .sb-contact a:hover{background:#15803d;}
+  .sb-contact svg{width:15px;height:15px;fill:#fff;}
+
+  /* ============ 4. الشريط العلوي ============ */
+  .topbar{
+    position:sticky;top:0;z-index:900;height:var(--topbar-h);flex-shrink:0;
+    display:flex;align-items:center;gap:10px;padding:0 12px;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .icon-btn{
+    width:40px;height:40px;flex-shrink:0;border-radius:11px;cursor:pointer;
+    display:grid;place-items:center;background:#fff;color:var(--muted);
+    border:1.5px solid var(--border);transition:.18s;
+  }
+  .icon-btn:hover{border-color:var(--accent);color:var(--primary);}
+  .icon-btn:active{transform:scale(.94);}
+  .icon-btn.loading svg{animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .topbar-title{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2;}
+  .topbar-title b{font-size:.88rem;font-weight:800;color:var(--text);}
+  .topbar-title small{font-size:.68rem;color:var(--muted);font-weight:600;}
+
+  .filter-pill{
+    display:none;align-items:center;gap:5px;height:36px;padding:0 12px;
+    border-radius:999px;background:var(--primary);color:#fff;border:none;
+    font-size:.74rem;font-weight:700;cursor:pointer;flex-shrink:0;
+  }
+  .filter-pill .dot{
+    width:7px;height:7px;border-radius:50%;background:#fbbf24;display:none;
+  }
+  .filter-pill.has .dot{display:block;}
+
+  /* ============ 5. المحتوى ============ */
+  .content{
+    flex:1;width:100%;max-width:1320px;margin:0 auto;
+    padding:14px 14px 40px;
+  }
 
   /* HERO */
-  .hero{padding:32px 18px 80px;text-align:center;position:relative;z-index:2;}
-  .hero h1{font-size:clamp(1.35rem,4vw,2.4rem);font-weight:800;letter-spacing:-.5px;margin-bottom:8px;line-height:1.3;}
+  .hero{
+    position:relative;overflow:hidden;border-radius:var(--radius);
+    padding:26px 18px 30px;text-align:center;color:#fff;
+    background:linear-gradient(135deg,#0e7490,#0891b2 55%,#06b6d4);
+    box-shadow:var(--shadow);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 18% 18%,rgba(255,255,255,.14) 0%,transparent 45%),
+      radial-gradient(circle at 86% 76%,rgba(255,255,255,.10) 0%,transparent 42%);
+  }
+  .hero > *{position:relative;z-index:1;}
+  .hero h1{
+    font-size:clamp(1.2rem,3.2vw,2rem);font-weight:800;
+    letter-spacing:-.4px;line-height:1.35;margin-bottom:6px;
+  }
   .hero h1 span{color:#a5f3fc;}
-  .hero p{max-width:620px;margin:0 auto 22px;font-size:clamp(.82rem,2vw,1rem);opacity:.92;line-height:1.6;}
+  .hero p{
+    max-width:560px;margin:0 auto 18px;
+    font-size:clamp(.78rem,1.7vw,.92rem);opacity:.93;line-height:1.6;
+  }
 
-  /* SEARCH */
-  .search-wrap{max-width:620px;margin:0 auto;position:relative;}
-  .search-wrap svg{position:absolute;right:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#94a3b8;pointer-events:none;}
-  #searchInput{width:100%;padding:15px 50px 15px 18px;border-radius:999px;border:none;font-family:inherit;font-size:.95rem;font-weight:500;color:var(--text);box-shadow:0 10px 30px rgba(8,47,73,.28);outline:none;transition:.25s;min-height:52px;}
-  #searchInput::placeholder{color:#94a3b8;font-size:.85rem;}
-  #searchInput:focus{box-shadow:0 0 0 4px rgba(255,255,255,.35),0 12px 34px rgba(8,47,73,.3);}
+  .search-wrap{max-width:560px;margin:0 auto;position:relative;}
+  .search-wrap > svg{
+    position:absolute;right:16px;top:50%;transform:translateY(-50%);
+    width:18px;height:18px;stroke:#94a3b8;pointer-events:none;
+  }
+  #searchInput{
+    width:100%;padding:14px 46px 14px 44px;border-radius:999px;border:none;
+    font-family:inherit;font-size:.9rem;font-weight:600;color:var(--text);
+    box-shadow:0 10px 28px rgba(8,47,73,.26);outline:none;
+    transition:box-shadow .25s;min-height:50px;
+  }
+  #searchInput::placeholder{color:#94a3b8;font-weight:500;font-size:.82rem;}
+  #searchInput:focus{box-shadow:0 0 0 4px rgba(255,255,255,.34),0 12px 30px rgba(8,47,73,.3);}
+  .clear-btn{
+    position:absolute;left:10px;top:50%;transform:translateY(-50%);
+    width:30px;height:30px;border-radius:50%;border:none;cursor:pointer;
+    background:#e2e8f0;color:#475569;display:none;place-items:center;
+    font-size:.8rem;font-weight:800;transition:.18s;
+  }
+  .clear-btn:hover{background:#cbd5e1;}
+  .clear-btn.show{display:grid;}
 
   /* STATS */
-  .stats{max-width:1100px;margin:-50px auto 0;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;position:relative;z-index:3;}
-  .stat{background:var(--card);border-radius:var(--radius);padding:14px 12px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border);}
-  .stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1.2;}
-  .stat span{font-size:.75rem;color:var(--muted);font-weight:600;}
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+    margin-top:14px;
+  }
+  .stat{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:12px 8px;text-align:center;box-shadow:var(--shadow-sm);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .stat:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+  .stat b{display:block;font-size:1.35rem;font-weight:800;color:var(--primary);line-height:1.2;}
+  .stat span{font-size:.68rem;color:var(--muted);font-weight:700;}
 
-  /* FILTERS */
-  .filters-container{max-width:1180px;margin:28px auto 0;padding:0 16px;display:flex;flex-direction:column;gap:16px;}
-  .filters{width:100%;}
-  .filters h2{font-size:.85rem;font-weight:700;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-  .chips{display:flex;gap:7px;flex-wrap:wrap;}
-  .chip{font-family:inherit;font-size:.78rem;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;background:#fff;color:#334155;border:1.5px solid var(--border);transition:.18s;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;gap:5px;touch-action:manipulation;}
-  .chip:hover{border-color:var(--accent);color:var(--primary);}
-  .chip.active{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(14,116,144,.28);}
-  .chip .cnt{display:inline-block;background:rgba(0,0,0,.08);border-radius:999px;padding:0 6px;font-size:.7rem;font-weight:700;min-width:20px;text-align:center;}
-  .chip.active .cnt{background:rgba(255,255,255,.25);}
-  
-  .chip.wilaya{border-color:#cbd5e1;background:#f8fafc;}
-  .chip.wilaya.active{background:linear-gradient(135deg,#0f172a,#334155);border-color:transparent;}
+  /* QUICK CHIPS */
+  .quick-chips{
+    display:flex;gap:7px;overflow-x:auto;padding:14px 2px 6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .quick-chips::-webkit-scrollbar{display:none;}
+  .qchip{
+    flex-shrink:0;font-size:.76rem;font-weight:700;padding:8px 14px;
+    border-radius:999px;cursor:pointer;background:#fff;color:#334155;
+    border:1.5px solid var(--border);transition:.18s;white-space:nowrap;
+    min-height:40px;display:inline-flex;align-items:center;gap:5px;
+  }
+  .qchip:hover{border-color:var(--accent);color:var(--primary);}
+  .qchip.active{
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(14,116,144,.3);
+  }
+  .qchip .cnt{
+    font-size:.66rem;font-weight:800;background:rgba(0,0,0,.08);
+    border-radius:999px;padding:0 6px;min-width:19px;text-align:center;
+  }
+  .qchip.active .cnt{background:rgba(255,255,255,.26);}
 
-  /* RESULTS */
-  main{max-width:1180px;margin:0 auto;padding:22px 16px 50px;}
-  .results-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;font-size:.82rem;color:var(--muted);font-weight:600;}
-  .results-bar b{color:var(--primary);}
-  .results-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  /* TOOLBAR */
+  .toolbar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px;flex-wrap:wrap;margin:10px 0 14px;
+  }
+  .results-info{font-size:.8rem;color:var(--muted);font-weight:700;}
+  .results-info b{color:var(--primary);}
+  .toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 
-  .source-badge{display:inline-flex;align-items:center;gap:4px;font-size:.68rem;padding:3px 9px;border-radius:999px;background:#dcfce7;color:#166534;font-weight:700;}
+  .source-badge{
+    display:inline-flex;align-items:center;gap:4px;font-size:.66rem;
+    padding:4px 10px;border-radius:999px;font-weight:800;
+    background:#dcfce7;color:#166534;
+  }
   .source-badge.local{background:#fef3c7;color:#92400e;}
   .source-badge.loading{background:#e0f2fe;color:#0369a1;}
 
-  .refresh-btn{background:#fff;border:1.5px solid var(--border);border-radius:50%;width:38px;height:38px;display:grid;place-items:center;cursor:pointer;transition:.2s;color:var(--muted);flex-shrink:0;touch-action:manipulation;}
-  .refresh-btn:hover{border-color:var(--accent);color:var(--primary);}
-  .refresh-btn.loading svg{animation:spin .8s linear infinite;}
+  .select{
+    font-family:inherit;font-size:.75rem;font-weight:700;color:#334155;
+    background:#fff;border:1.5px solid var(--border);border-radius:10px;
+    padding:8px 10px;cursor:pointer;min-height:40px;outline:none;transition:.18s;
+  }
+  .select:focus,.select:hover{border-color:var(--accent);color:var(--primary);}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+  /* ============ 6. الشبكة والبطاقات ============ */
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));
+    gap:14px;scroll-margin-top:calc(var(--topbar-h) + 14px);
+  }
 
-  /* LOADING */
-  .loading{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-weight:600;}
-  .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  /* CARD */
-  .card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:12px;transition:transform .22s,box-shadow .22s,border-color .22s;position:relative;overflow:hidden;min-width:0;}
-  .card::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transform-origin:right;transition:transform .3s;}
-  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#cbd5e1;}
+  .card{
+    background:var(--card);border-radius:var(--radius);border:1px solid var(--border);
+    box-shadow:var(--shadow-sm);padding:16px;display:flex;flex-direction:column;
+    gap:11px;position:relative;overflow:hidden;min-width:0;
+    transition:transform .22s,box-shadow .22s,border-color .22s;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;right:0;left:0;height:3px;
+    background:linear-gradient(90deg,var(--primary),var(--accent-2));
+    transform:scaleX(0);transform-origin:right;transition:transform .3s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#cbd5e1;}
   .card:hover::before{transform:scaleX(1);}
+
   .card-head{display:flex;gap:11px;align-items:flex-start;min-width:0;}
-  .avatar{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e0f2fe,#cffafe);color:var(--primary);display:grid;place-items:center;font-size:1.15rem;font-weight:800;border:1px solid #bae6fd;}
-  .card-head h3{font-size:.95rem;font-weight:800;line-height:1.4;margin-bottom:2px;word-break:break-word;}
-  .specialty{font-size:.75rem;color:var(--primary);font-weight:600;line-height:1.5;word-break:break-word;}
-  .tags-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;}
-  .tag{font-size:.68rem;font-weight:700;background:var(--primary-light);color:var(--primary-dark);padding:3px 10px;border-radius:999px;border:1px solid #bae6fd;white-space:nowrap;}
+  .avatar{
+    flex-shrink:0;width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,#e0f2fe,#cffafe);color:var(--primary);
+    display:grid;place-items:center;font-size:1.1rem;font-weight:800;
+    border:1px solid #bae6fd;
+  }
+  .card-head > div:last-child{min-width:0;flex:1;}
+  .card-head h3{
+    font-size:.92rem;font-weight:800;line-height:1.4;margin-bottom:2px;
+    word-break:break-word;
+  }
+  .specialty{font-size:.74rem;color:var(--primary);font-weight:600;line-height:1.5;word-break:break-word;}
+
+  .tags-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;}
+  .tag{
+    font-size:.66rem;font-weight:800;background:var(--primary-light);
+    color:var(--primary-dark);padding:3px 9px;border-radius:999px;
+    border:1px solid #bae6fd;white-space:nowrap;
+  }
   .tag.wilaya-tag{background:#f1f5f9;color:#475569;border-color:#cbd5e1;}
-  .addr{display:flex;gap:7px;align-items:flex-start;font-size:.78rem;color:var(--muted);font-weight:500;background:#f8fafc;border:1px dashed #e2e8f0;border-radius:10px;padding:8px 10px;word-break:break-word;}
+
+  .addr{
+    display:flex;gap:7px;align-items:flex-start;font-size:.76rem;
+    color:var(--muted);font-weight:600;background:#f8fafc;
+    border:1px dashed #e2e8f0;border-radius:10px;padding:8px 10px;
+    word-break:break-word;line-height:1.55;
+  }
   .addr svg{flex-shrink:0;width:14px;height:14px;margin-top:4px;stroke:var(--accent);}
+
   .phones{display:flex;flex-direction:column;gap:7px;margin-top:auto;}
   .phone-row{display:flex;gap:7px;align-items:center;min-width:0;}
-  .phone{flex:1;display:flex;align-items:center;gap:7px;text-decoration:none;background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4;border-radius:10px;padding:9px 10px;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;direction:ltr;justify-content:center;transition:.18s;min-height:44px;min-width:0;touch-action:manipulation;}
+  .phone{
+    flex:1;display:flex;align-items:center;gap:7px;justify-content:center;
+    text-decoration:none;background:#f0fdfa;color:#0f766e;
+    border:1px solid #99f6e4;border-radius:10px;padding:9px 10px;
+    font-size:.82rem;font-weight:800;font-variant-numeric:tabular-nums;
+    direction:ltr;transition:.18s;min-height:44px;min-width:0;
+  }
   .phone:hover{background:#ccfbf1;border-color:#5eead4;}
   .phone svg{width:14px;height:14px;stroke:currentColor;flex-shrink:0;}
-  .wa{flex-shrink:0;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:#dcfce7;border:1px solid #86efac;transition:.18s;touch-action:manipulation;}
-  .wa:hover{background:#bbf7d0;}
+  .wa{
+    flex-shrink:0;width:44px;height:44px;border-radius:10px;display:grid;
+    place-items:center;background:#dcfce7;border:1px solid #86efac;
+    transition:.18s;
+  }
+  .wa:hover{background:#bbf7d0;transform:scale(1.04);}
   .wa svg{width:20px;height:20px;fill:#16a34a;}
-  .no-phone{font-size:.78rem;color:#b45309;font-weight:600;background:#fffbeb;border:1px dashed #fcd34d;border-radius:10px;padding:9px 10px;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center;}
+  .no-phone{
+    font-size:.76rem;color:#b45309;font-weight:700;background:#fffbeb;
+    border:1px dashed #fcd34d;border-radius:10px;padding:9px 10px;
+    text-align:center;min-height:44px;display:flex;align-items:center;
+    justify-content:center;
+  }
 
-  /* EMPTY */
-  .empty{grid-column:1/-1;text-align:center;padding:50px 18px;background:#fff;border-radius:var(--radius);border:1px dashed #cbd5e1;color:var(--muted);}
-  .empty .ico{font-size:2.6rem;margin-bottom:8px;opacity:.6;}
+  /* ============ 7. الترقيم ============ */
+  .pagination{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    margin-top:22px;padding-top:18px;border-top:1px solid var(--border);
+  }
+  .page-info{font-size:.76rem;color:var(--muted);font-weight:700;}
+  .page-info b{color:var(--primary);}
+  .page-btns{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:center;}
+  .pbtn{
+    min-width:40px;height:40px;padding:0 10px;border-radius:11px;
+    background:#fff;border:1.5px solid var(--border);color:#334155;
+    font-size:.8rem;font-weight:800;cursor:pointer;display:inline-flex;
+    align-items:center;justify-content:center;transition:.16s;
+  }
+  .pbtn:hover:not(:disabled):not(.dots){border-color:var(--accent);color:var(--primary);}
+  .pbtn.active{
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(14,116,144,.3);
+  }
+  .pbtn:disabled{opacity:.4;cursor:not-allowed;}
+  .pbtn.dots{border:none;background:transparent;cursor:default;color:var(--muted);}
+  .pbtn svg{width:15px;height:15px;stroke:currentColor;}
+
+  /* ============ 8. حالات ============ */
+  .empty{
+    grid-column:1/-1;text-align:center;padding:54px 20px;
+    background:#fff;border-radius:var(--radius);border:1px dashed #cbd5e1;
+    color:var(--muted);
+  }
+  .empty .ico{font-size:2.6rem;margin-bottom:8px;opacity:.55;}
   .empty b{display:block;font-size:1rem;color:var(--text);margin-bottom:5px;}
+  .empty button{
+    margin-top:14px;padding:10px 20px;border-radius:999px;border:none;
+    background:var(--primary);color:#fff;font-weight:800;font-size:.8rem;
+    cursor:pointer;min-height:44px;
+  }
 
-  /* NOTE */
-  .note{max-width:1180px;margin:0 auto 36px;padding:0 16px;}
-  .note-inner{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px 16px;font-size:.8rem;color:#92400e;font-weight:500;display:flex;gap:9px;align-items:flex-start;line-height:1.6;}
-  .note-inner span{font-size:1rem;flex-shrink:0;}
+  .loading{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-weight:700;}
+  .spinner{
+    width:38px;height:38px;border:3px solid var(--border);border-top-color:var(--primary);
+    border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;
+  }
 
-  /* FOOTER */
-  footer{background:#0f172a;color:#cbd5e1;padding:36px 18px 22px;text-align:center;}
-  footer h3{color:#fff;font-size:1rem;font-weight:800;margin-bottom:6px;}
-  footer p{font-size:.8rem;opacity:.75;max-width:480px;margin:0 auto 18px;}
-  .dev-card{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 18px;flex-wrap:wrap;justify-content:center;max-width:100%;}
-  .dev-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff;font-weight:800;font-size:.9rem;flex-shrink:0;}
+  /* ============ 9. الفوتر ============ */
+  footer{
+    background:#0f172a;color:#cbd5e1;padding:34px 16px 22px;text-align:center;
+  }
+  footer h3{color:#fff;font-size:.98rem;font-weight:800;margin-bottom:6px;}
+  footer p{font-size:.78rem;opacity:.72;max-width:460px;margin:0 auto 18px;line-height:1.7;}
+  .dev-card{
+    display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;padding:12px 18px;max-width:100%;
+  }
+  .dev-avatar{
+    width:42px;height:42px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:.88rem;
+  }
   .dev-info{text-align:right;}
-  .dev-info b{color:#fff;display:block;font-size:.9rem;}
-  .dev-info small{font-size:.7rem;opacity:.7;}
-  .dev-wa{display:inline-flex;align-items:center;gap:7px;background:#16a34a;color:#fff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:700;font-size:.82rem;transition:.2s;min-height:44px;touch-action:manipulation;}
+  .dev-info b{color:#fff;display:block;font-size:.88rem;}
+  .dev-info small{font-size:.68rem;opacity:.7;}
+  .dev-wa{
+    display:inline-flex;align-items:center;gap:7px;background:#16a34a;color:#fff;
+    text-decoration:none;padding:10px 16px;border-radius:999px;
+    font-weight:800;font-size:.8rem;transition:.2s;min-height:44px;
+  }
   .dev-wa:hover{background:#15803d;}
   .dev-wa svg{width:16px;height:16px;fill:#fff;}
-  .copyright{margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:.72rem;opacity:.55;line-height:1.6;}
+  .copyright{
+    margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);
+    font-size:.7rem;opacity:.5;line-height:1.6;
+  }
 
-  /* FLOATING */
-  .float-wa{position:fixed;bottom:18px;left:18px;z-index:999;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.45);text-decoration:none;transition:.25s;animation:pulse 2.5s infinite;touch-action:manipulation;}
-  .float-wa:hover{transform:scale(1.1);}
-  .float-wa svg{width:28px;height:28px;fill:#fff;}
-  @keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45);}50%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 12px rgba(37,211,102,.12);}}
-  .to-top{position:fixed;bottom:18px;right:18px;z-index:998;width:46px;height:46px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(14,116,144,.4);opacity:0;visibility:hidden;transition:.3s;min-height:44px;min-width:44px;touch-action:manipulation;}
+  /* ============ 10. الأزرار العائمة ============ */
+  .float-wa{
+    position:fixed;bottom:16px;left:16px;z-index:999;width:52px;height:52px;
+    border-radius:50%;background:#25d366;display:grid;place-items:center;
+    box-shadow:0 8px 24px rgba(37,211,102,.45);text-decoration:none;
+    transition:.25s;animation:pulse 2.6s infinite;
+  }
+  .float-wa:hover{transform:scale(1.08);}
+  .float-wa svg{width:27px;height:27px;fill:#fff;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45);}
+    50%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 12px rgba(37,211,102,.1);}
+  }
+  .to-top{
+    position:fixed;bottom:16px;right:16px;z-index:998;width:46px;height:46px;
+    border-radius:50%;background:var(--primary);color:#fff;border:none;
+    cursor:pointer;display:grid;place-items:center;
+    box-shadow:0 6px 18px rgba(14,116,144,.4);
+    opacity:0;visibility:hidden;transition:.3s;
+  }
   .to-top.show{opacity:1;visibility:visible;}
   .to-top:hover{background:var(--primary-dark);}
 
-  /* RESPONSIVE */
+  /* ============ 11. الاستجابة ============ */
+  @media(min-width:1024px){
+    .sidebar{transform:translateX(0);box-shadow:none;}
+    .overlay{display:none !important;}
+    .main-wrap{margin-right:var(--sidebar-w);}
+    .menu-btn{display:none !important;}
+    .sb-close{display:none;}
+    .content{padding:18px 20px 46px;}
+    .hero{padding:34px 24px 38px;}
+    .stats{grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  }
+  @media(max-width:1023px){
+    .filter-pill{display:inline-flex;}
+  }
   @media(max-width:640px){
-    .hero{padding:28px 16px 74px;}
-    .grid{grid-template-columns:1fr;}
-    .topbar{justify-content:center;text-align:center;padding:10px 14px;}
-    .brand{font-size:.88rem;}
-    .brand .logo{width:34px;height:34px;font-size:1.05rem;}
-    .top-links a{font-size:.72rem;padding:6px 12px;min-height:34px;}
-    .chip{font-size:.72rem;padding:7px 12px;}
-    .stats{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:-44px;}
-    .stat b{font-size:1.3rem;}
-    .stat span{font-size:.7rem;}
-    .card{padding:16px;}
+    :root{--topbar-h:54px;}
+    .content{padding:12px 12px 34px;}
+    .hero{padding:22px 14px 26px;border-radius:14px;}
+    .hero p{font-size:.76rem;}
+    #searchInput{font-size:.85rem;min-height:48px;padding:12px 42px 12px 42px;}
+    .stats{gap:8px;}
+    .stat{padding:10px 6px;}
+    .stat b{font-size:1.15rem;}
+    .stat span{font-size:.62rem;}
+    .grid{grid-template-columns:1fr;gap:12px;}
+    .card{padding:14px;}
     .avatar{width:40px;height:40px;font-size:1rem;}
-    .card-head h3{font-size:.9rem;}
-    .float-wa{width:50px;height:50px;bottom:14px;left:14px;}
-    .float-wa svg{width:26px;height:26px;}
-    .to-top{width:44px;height:44px;bottom:14px;right:14px;}
+    .card-head h3{font-size:.88rem;}
+    .float-wa{width:48px;height:48px;bottom:12px;left:12px;}
+    .float-wa svg{width:24px;height:24px;}
+    .to-top{width:44px;height:44px;bottom:12px;right:12px;}
+    .pbtn{min-width:38px;height:38px;font-size:.76rem;}
   }
   @media(max-width:380px){
-    .hero h1{font-size:1.25rem;}
-    #searchInput{font-size:.85rem;padding:13px 44px 13px 14px;min-height:48px;}
-    .brand{font-size:.8rem;}
-    .stats{grid-template-columns:repeat(2,1fr);gap:8px;}
-    .stat b{font-size:1.15rem;}
-    .chip{font-size:.68rem;padding:6px 10px;}
-    .card{padding:14px;}
-    .avatar{width:36px;height:36px;font-size:.9rem;}
-    .card-head h3{font-size:.85rem;}
-    .specialty{font-size:.68rem;}
-    .phone{font-size:.78rem;padding:8px;min-height:44px;}
-    .wa{width:44px;height:44px;}
-    .dev-card{padding:10px 14px;}
-    .dev-wa{font-size:.78rem;padding:8px 14px;}
+    .hero h1{font-size:1.15rem;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .card{padding:12px;}
+    .phone{font-size:.76rem;padding:8px;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
   }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="topbar">
-    <div class="brand">
-      <div class="logo">🩺</div>
-      <div>دليل الأطباء<small>خميس مليانة والجزائر</small></div>
-    </div>
-    <div class="top-links">
-      <a href="#doctors">قائمة الأطباء</a>
-      <a href="#contact">اتصل بنا</a>
-    </div>
-  </div>
+<div class="app">
 
-  <div class="hero">
-    <h1>دليل <span>الأطباء والمختصين</span> الشامل</h1>
-    <p>ابحث عن طبيبك بسهولة حسب الولاية، التخصص، أو اسم الحي. أرقام الهاتف والعناوين في مكان واحد.</p>
-    <div class="search-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-      <input type="text" id="searchInput" placeholder="ابحث عن طبيب، تخصص، ولاية، أو حي…" autocomplete="off" inputmode="search">
+  <!-- ================= القائمة الجانبية ================= -->
+  <aside class="sidebar" id="sidebar" aria-hidden="true">
+    <div class="sb-head">
+      <div class="sb-brand">
+        <div class="logo">🩺</div>
+        <div>
+          <b>دليل الأطباء</b>
+          <small>خميس مليانة والجزائر</small>
+        </div>
+      </div>
+      <button class="sb-close" id="sbClose" aria-label="إغلاق القائمة">✕</button>
     </div>
-  </div>
-</header>
 
-<div class="stats">
-  <div class="stat"><b id="statDoctors">0</b><span>طبيب ومختص</span></div>
-  <div class="stat"><b id="statSpecialties">0</b><span>تخصص طبي</span></div>
-  <div class="stat"><b id="statWilayas">0</b><span>ولاية</span></div>
-  <div class="stat"><b id="statPhones">0</b><span>رقم هاتف</span></div>
+    <div class="sb-body">
+      <nav class="sb-nav">
+        <a href="#doctors" class="on">📋 قائمة الأطباء</a>
+        <a href="#contact">📞 اتصل بنا</a>
+      </nav>
+
+      <section class="sb-section">
+        <div class="sb-title">
+          <span>📍 الولايات</span>
+          <span class="badge" id="sbWilayaBadge">0</span>
+        </div>
+        <div class="sb-scroll" id="sbWilayas"></div>
+      </section>
+
+      <section class="sb-section">
+        <div class="sb-title">
+          <span>🔎 التخصصات</span>
+          <span class="badge" id="sbCatBadge">0</span>
+        </div>
+        <div class="sb-scroll" id="sbCats"></div>
+      </section>
+
+      <button class="sb-reset" id="resetBtn">↺ إعادة تعيين كل الفلاتر</button>
+
+      <div class="sb-contact">
+        <b>هل لديك تصحيح أو إضافة؟</b>
+        تواصل معنا عبر واتساب لإضافة طبيب أو تحديث معلومة.
+        <br>
+        <a href="https://wa.me/213773375427" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
+          0773375427
+        </a>
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ================= المحتوى ================= -->
+  <div class="main-wrap">
+
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="فتح القائمة">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+
+      <div class="topbar-title">
+        <b>دليل الأطباء</b>
+        <small id="topbarSub">جاري التحميل…</small>
+      </div>
+
+      <button class="filter-pill" id="filterPill">
+        <span class="dot"></span>
+        فلترة
+      </button>
+
+      <button class="icon-btn" id="refreshBtn" title="تحديث البيانات" aria-label="تحديث البيانات">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.6"/><polyline points="21 3 21 9 15 9"/></svg>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <section class="hero">
+        <h1>دليل <span>الأطباء والمختصين</span> الشامل</h1>
+        <p>ابحث عن طبيبك بسهولة حسب الولاية، التخصص، أو اسم الحي. أرقام الهاتف والعناوين في مكان واحد.</p>
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="searchInput" placeholder="ابحث عن طبيب، تخصص، ولاية، أو حي…" autocomplete="off" inputmode="search">
+          <button class="clear-btn" id="clearSearch" aria-label="مسح البحث">✕</button>
+        </div>
+      </section>
+
+      <section class="stats">
+        <div class="stat"><b id="statDoctors">0</b><span>طبيب ومختص</span></div>
+        <div class="stat"><b id="statSpecialties">0</b><span>تخصص طبي</span></div>
+        <div class="stat"><b id="statWilayas">0</b><span>ولاية</span></div>
+        <div class="stat"><b id="statPhones">0</b><span>رقم هاتف</span></div>
+      </section>
+
+      <div class="quick-chips" id="quickChips"></div>
+
+      <div class="toolbar">
+        <div class="results-info">
+          النتائج: <b id="resultCount">…</b> طبيب / عيادة
+          <span id="sourceBadge" class="source-badge loading" style="margin-inline-start:6px;">…</span>
+        </div>
+        <div class="toolbar-right">
+          <select class="select" id="sortSelect" aria-label="ترتيب النتائج">
+            <option value="default">الترتيب: افتراضي</option>
+            <option value="name">الاسم (أ - ي)</option>
+            <option value="wilaya">حسب الولاية</option>
+          </select>
+          <select class="select" id="pageSizeSelect" aria-label="عدد النتائج في الصفحة">
+            <option value="12">12 / صفحة</option>
+            <option value="24">24 / صفحة</option>
+            <option value="48">48 / صفحة</option>
+            <option value="96">96 / صفحة</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="grid"></div>
+      <nav class="pagination" id="pagination" aria-label="التنقل بين الصفحات"></nav>
+
+    </main>
+
+    <footer id="contact">
+      <h3>تطوير وتصميم</h3>
+      <p>صفحة احترافية تخدم سكان الجزائر والمناطق المجاورة.</p>
+      <div class="dev-card">
+        <div class="dev-avatar">رك</div>
+        <div class="dev-info"><b>ركاب عبد القادر</b><small>مطوّر المواقع الإلكترونية</small></div>
+        <a class="dev-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
+          0773375427
+        </a>
+      </div>
+      <div class="copyright">© <span id="year"></span> دليل الأطباء — تطوير: ركاب عبد القادر</div>
+    </footer>
+
+  </div>
 </div>
 
-<div class="filters-container">
-  <section class="filters">
-    <h2>📍 تصفية حسب الولاية</h2>
-    <div class="chips" id="wilayaChips"></div>
-  </section>
-  
-  <section class="filters">
-    <h2>🔎 تصفية حسب التخصص</h2>
-    <div class="chips" id="chips"></div>
-  </section>
-</div>
-
-<main id="doctors">
-  <div class="results-bar">
-    <div class="results-left">
-      <div>النتائج: <b id="resultCount">…</b> طبيب / عيادة</div>
-      <span id="sourceBadge" class="source-badge loading">…</span>
-      <div id="activeFilterLabel"></div>
-    </div>
-    <button id="refreshBtn" class="refresh-btn" title="تحديث البيانات">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.6"/><polyline points="21 3 21 9 15 9"/></svg>
-    </button>
-  </div>
-  <div class="grid" id="grid"></div>
-</main>
-
-<div class="note">
-  <div class="note-inner">
-    <span>⚠️</span>
-    <div><b>ملاحظة:</b> المعلومات محدّثة من جدول Google Sheets. يُنصح بالاتصال مسبقاً للتأكد من المواعيد. لأي تصحيح، تواصل معنا عبر واتساب.</div>
-  </div>
-</div>
-
-<footer id="contact">
-  <h3>تطوير وتصميم</h3>
-  <p>صفحة احترافية تخدم سكان الجزائر والمناطق المجاورة.</p>
-  <div class="dev-card">
-    <div class="dev-avatar">رك</div>
-    <div class="dev-info"><b>ركاب عبد القادر</b><small>مطوّر المواقع الإلكترونية</small></div>
-    <a class="dev-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
-      0773375427
-    </a>
-  </div>
-  <div class="copyright">© <span id="year"></span> دليل الأطباء — تطوير: ركاب عبد القادر</div>
-</footer>
-
-<a class="float-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener" title="واتساب المطوّر">
+<a class="float-wa" href="https://wa.me/213773375427" target="_blank" rel="noopener" title="واتساب المطوّر" aria-label="واتساب">
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>
 </a>
 
-<button class="to-top" id="toTop" title="العودة للأعلى">
+<button class="to-top" id="toTop" title="العودة للأعلى" aria-label="العودة للأعلى">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
 <script>
 /* ==========================================================
-   🔗 رابط Google Sheets (صيغة التصدير CSV)
+   🔗 رابط Google Sheets (تصدير CSV)
    ========================================================== */
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/14hbhgdB51DH6Q0TYIeYTscBG0bkZ5waNqbn5Q_HEBYc/export?format=csv&gid=0";
 
-/* ============ بيانات احتياطية (محدثة لتشمل الولاية) ============ */
+/* ============ بيانات احتياطية ============ */
 const FALLBACK_DATA = [
   {n:"داودي", s:"أمراض الكلى والمسالك البولية، عقم الرجال والضعف الجنسي", c:"الكلى والمسالك البولية", a:"حي سيدي معمر، البلوك الأول، قرب الجامع العتيق", p:["0668046804","027566454"], w:"عين الدفلى"},
   {n:"بغدير بوزيد", s:"طب إعادة التأهيل الحركي", c:"الطب الفيزيائي وإعادة التأهيل", a:"", p:["0773024664"], w:"عين الدفلى"},
@@ -331,44 +716,78 @@ const FALLBACK_DATA = [
   {n:"عيادة البسمة", s:"عيادة طبية", c:"مؤسسات صحية", a:"", p:["0560970892"], w:"عين الدفلى"}
 ];
 
-/* ============ أدوات ============ */
-const norm = s => (s||"").replace(/[\u064B-\u0652\u0670\u0640]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/ؤ/g,"و").replace(/ئ/g,"ي").toLowerCase().trim();
-const digits = n => n.replace(/\D/g,"");
-const telHref = n => { let d = digits(n); if(d.startsWith("0")) d = "213"+d.slice(1); return "tel:+"+d; };
+/* ============ أدوات مساعدة ============ */
+const norm = s => String(s ?? "")
+  .replace(/[\u064B-\u0652\u0670\u0640]/g, "")
+  .replace(/[أإآٱ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه")
+  .replace(/ؤ/g, "و").replace(/ئ/g, "ي")
+  .toLowerCase().trim();
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+const digits = n => String(n).replace(/\D/g, "");
+const telHref = n => { let d = digits(n); if (d.startsWith("0")) d = "213" + d.slice(1); return "tel:+" + d; };
 const isMobile = n => /^0[5-7]/.test(digits(n));
-const waHref = n => "https://wa.me/213"+digits(n).slice(1);
-const initial = name => (name.replace(/^(البروفيسور|الدكتور|الدكتورة|الطبيب|الطبيبة|الحكيم|الحكيمة|عيادة)\s+/,"").trim().charAt(0))||"🩺";
+const waHref = n => { const d = digits(n); return "https://wa.me/213" + (d.startsWith("0") ? d.slice(1) : d); };
+const initial = name => (String(name).replace(/^(البروفيسور|الدكتور|الدكتورة|الطبيب|الطبيبة|الحكيم|الحكيمة|عيادة)\s+/, "").trim().charAt(0)) || "🩺";
+
+/* أيقونات SVG */
+const ICON = {
+  phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  wa: `<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg>`,
+  pin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  prev: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>`,
+  next: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>`
+};
+
+/* ============ الحالة ============ */
+const state = {
+  all: [],
+  filtered: [],
+  query: "",
+  wilaya: "الكل",
+  cat: "الكل",
+  sort: "default",
+  page: 1,
+  pageSize: Number(localStorage.getItem("docPageSize")) || 12
+};
 
 /* ============ عناصر DOM ============ */
-const grid        = document.getElementById("grid");
-const chipsBox    = document.getElementById("chips");
-const wilayaChips = document.getElementById("wilayaChips");
-const searchInput = document.getElementById("searchInput");
-const resultCount = document.getElementById("resultCount");
-const filterLabel = document.getElementById("activeFilterLabel");
-const sourceBadge = document.getElementById("sourceBadge");
-const refreshBtn  = document.getElementById("refreshBtn");
-const toTop       = document.getElementById("toTop");
+const $ = id => document.getElementById(id);
+const grid        = $("grid");
+const pagination  = $("pagination");
+const sbWilayas   = $("sbWilayas");
+const sbCats      = $("sbCats");
+const quickChips  = $("quickChips");
+const searchInput = $("searchInput");
+const clearSearch = $("clearSearch");
+const resultCount = $("resultCount");
+const sourceBadge = $("sourceBadge");
+const refreshBtn  = $("refreshBtn");
+const toTop       = $("toTop");
+const sidebar     = $("sidebar");
+const overlay     = $("overlay");
+const topbarSub   = $("topbarSub");
+const filterPill  = $("filterPill");
+const sortSelect  = $("sortSelect");
+const pageSizeSel = $("pageSizeSelect");
 
-let DATA = [];
-let activeCat = "الكل";
-let activeWilaya = "الكل";
-let query = "";
-
-/* ============ CSV Parser ============ */
+/* ==========================================================
+   تحميل البيانات
+   ========================================================== */
 function parseCSV(text) {
   const rows = []; let row = [], field = "", inQ = false;
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
     if (inQ) {
-      if (c === '"' && text[i+1] === '"') { field += '"'; i++; }
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
       else if (c === '"') inQ = false;
       else field += c;
     } else {
       if (c === '"') inQ = true;
       else if (c === ',') { row.push(field); field = ""; }
       else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ""; }
-      else if (c === '\r') { /* skip */ }
+      else if (c === '\r') { /* تجاهل */ }
       else field += c;
     }
   }
@@ -376,182 +795,402 @@ function parseCSV(text) {
   return rows;
 }
 
-/* ============ تحميل من Google Sheets ============ */
 async function fetchSheet() {
   const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
   if (!res.ok) throw new Error("HTTP " + res.status);
   let csv = await res.text();
   if (csv.charCodeAt(0) === 0xFEFF) csv = csv.slice(1);
-  if (csv.trim().startsWith("<")) throw new Error("الرابط يعيد صفحة HTML بدلاً من CSV");
+  if (csv.trim().startsWith("<")) throw new Error("الرابط يعيد HTML بدلاً من CSV");
   const rows = parseCSV(csv);
   const data = rows.slice(1)
     .filter(r => r[0] && r[0].trim())
     .map(r => ({
-      n: (r[0]||"").trim(),
-      s: (r[1]||"").trim(),
-      c: (r[2]||"").trim() || "طب عام",
-      a: (r[3]||"").trim(),
-      p: (r[4]||"").split("/").map(x=>x.trim()).filter(Boolean),
-      w: (r[5]||"").trim() || "غير محددة" // العمود السادس للولاية
+      n: (r[0] || "").trim(),
+      s: (r[1] || "").trim(),
+      c: (r[2] || "").trim() || "طب عام",
+      a: (r[3] || "").trim(),
+      p: (r[4] || "").split("/").map(x => x.trim()).filter(Boolean),
+      w: (r[5] || "").trim() || "غير محددة"
     }));
   if (!data.length) throw new Error("الجدول فارغ");
   return data;
 }
 
-/* ============ تحميل البيانات ============ */
+/* تجهيز البيانات: إضافة حقل بحث مُطبَّع مسبقاً (أسرع بكثير أثناء الكتابة) */
+function prepare(list) {
+  return list.map(d => {
+    d._s = norm([d.n, d.s, d.c, d.a, d.w, d.p.join(" ")].join(" "));
+    return d;
+  });
+}
+
 async function loadData() {
   grid.innerHTML = `<div class="loading"><div class="spinner"></div>جاري تحميل بيانات الأطباء…</div>`;
+  pagination.innerHTML = "";
   resultCount.textContent = "…";
   sourceBadge.className = "source-badge loading";
   sourceBadge.textContent = "…";
 
+  let raw, fromNet = false;
   try {
-    DATA = await fetchSheet();
-    sourceBadge.className = "source-badge";
-    sourceBadge.textContent = "✓ محدّث";
-    sourceBadge.title = "البيانات محمّلة من Google Sheets";
+    raw = await fetchSheet();
+    fromNet = true;
   } catch (e) {
     console.warn("تعذر تحميل Google Sheets:", e.message);
-    DATA = FALLBACK_DATA;
-    sourceBadge.className = "source-badge local";
-    sourceBadge.textContent = "⚠ محلي";
-    sourceBadge.title = "تعذر الاتصال — تُعرض بيانات محفوظة محلياً";
+    raw = FALLBACK_DATA;
   }
 
+  state.all = prepare(raw);
+  state.page = 1;
+
+  sourceBadge.className = "source-badge" + (fromNet ? "" : " local");
+  sourceBadge.textContent = fromNet ? "✓ محدّث" : "⚠ محلي";
+  sourceBadge.title = fromNet ? "البيانات محمّلة من Google Sheets" : "تعذر الاتصال — تُعرض بيانات محفوظة محلياً";
+
   updateStats();
-  buildWilayaChips();
-  buildChips();
-  render();
+  applyFilters();
 }
 
 /* ============ الإحصائيات ============ */
 function updateStats() {
-  document.getElementById("statDoctors").textContent = DATA.length;
-  document.getElementById("statSpecialties").textContent = new Set(DATA.map(d=>d.c)).size;
-  document.getElementById("statWilayas").textContent = new Set(DATA.map(d=>d.w)).size;
-  document.getElementById("statPhones").textContent = DATA.reduce((a,d)=>a+d.p.length,0);
+  $("statDoctors").textContent = state.all.length;
+  $("statSpecialties").textContent = new Set(state.all.map(d => d.c)).size;
+  $("statWilayas").textContent = new Set(state.all.map(d => d.w)).size;
+  $("statPhones").textContent = state.all.reduce((a, d) => a + d.p.length, 0);
 }
 
-/* ============ فلاتر الولايات ============ */
-function buildWilayaChips() {
-  const counts = {};
-  DATA.forEach(d => counts[d.w] = (counts[d.w]||0)+1);
-  const wilayas = ["الكل", ...Object.keys(counts).sort((a,b)=>counts[b]-counts[a])];
+/* ============ عدّاد مساعد ============ */
+function countBy(arr, key) {
+  const m = new Map();
+  for (const d of arr) m.set(d[key], (m.get(d[key]) || 0) + 1);
+  return m;
+}
 
-  wilayaChips.innerHTML = wilayas.map(w => {
-    const num = w === "الكل" ? DATA.length : counts[w];
-    return `<button class="chip wilaya${w===activeWilaya?" active":""}" data-wilaya="${w}">${w} <span class="cnt">${num}</span></button>`;
+/* ==========================================================
+   بناء الفلاتر
+   ========================================================== */
+function renderSidebar() {
+  /* --- الولايات --- */
+  const wCounts = countBy(state.all, "w");
+  const wilayas = ["الكل", ...Array.from(wCounts.keys()).sort((a, b) => wCounts.get(b) - wCounts.get(a))];
+  $("sbWilayaBadge").textContent = wilayas.length - 1;
+
+  sbWilayas.innerHTML = wilayas.map(w => {
+    const num = w === "الكل" ? state.all.length : wCounts.get(w);
+    return `<button class="sb-item${w === state.wilaya ? " active" : ""}" data-w="${esc(w)}">
+      <span>${esc(w)}</span><span class="cnt">${num}</span>
+    </button>`;
   }).join("");
 
-  wilayaChips.querySelectorAll(".chip").forEach(btn => {
-    btn.addEventListener("click", () => {
-      wilayaChips.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeWilaya = btn.dataset.wilaya;
-      render();
-    });
-  });
-}
+  /* --- التخصصات (حسب الولاية المختارة) --- */
+  const pool = state.wilaya === "الكل" ? state.all : state.all.filter(d => d.w === state.wilaya);
+  const cCounts = countBy(pool, "c");
+  const cats = ["الكل", ...Array.from(cCounts.keys()).sort((a, b) => cCounts.get(b) - cCounts.get(a))];
+  $("sbCatBadge").textContent = cats.length - 1;
 
-/* ============ فلاتر التخصصات ============ */
-function buildChips() {
-  // تصفية التخصصات بناءً على الولاية المختارة حالياً
-  const currentData = activeWilaya === "الكل" ? DATA : DATA.filter(d => d.w === activeWilaya);
-  
-  const counts = {};
-  currentData.forEach(d => counts[d.c] = (counts[d.c]||0)+1);
-  const cats = ["الكل", ...Object.keys(counts).sort((a,b)=>counts[b]-counts[a])];
+  if (!cats.includes(state.cat)) state.cat = "الكل";
 
-  if (!cats.includes(activeCat)) activeCat = "الكل";
-
-  chipsBox.innerHTML = cats.map(cat => {
-    const num = cat === "الكل" ? currentData.length : counts[cat];
-    return `<button class="chip${cat===activeCat?" active":""}" data-cat="${cat}">${cat} <span class="cnt">${num}</span></button>`;
+  sbCats.innerHTML = cats.map(c => {
+    const num = c === "الكل" ? pool.length : cCounts.get(c);
+    return `<button class="sb-item${c === state.cat ? " active" : ""}" data-c="${esc(c)}">
+      <span>${esc(c)}</span><span class="cnt">${num}</span>
+    </button>`;
   }).join("");
-
-  chipsBox.querySelectorAll(".chip").forEach(btn => {
-    btn.addEventListener("click", () => {
-      chipsBox.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeCat = btn.dataset.cat;
-      render();
-    });
-  });
 }
 
-/* ============ بطاقة ============ */
+function renderQuickChips() {
+  const wCounts = countBy(state.all, "w");
+  const wilayas = ["الكل", ...Array.from(wCounts.keys()).sort((a, b) => wCounts.get(b) - wCounts.get(a))];
+
+  quickChips.innerHTML = wilayas.map(w => {
+    const num = w === "الكل" ? state.all.length : wCounts.get(w);
+    return `<button class="qchip${w === state.wilaya ? " active" : ""}" data-w="${esc(w)}">
+      ${esc(w)} <span class="cnt">${num}</span>
+    </button>`;
+  }).join("");
+}
+
+/* ==========================================================
+   الفلترة والترتيب
+   ========================================================== */
+function applyFilters(resetPage = true) {
+  const q = norm(state.query);
+
+  let arr = state.all.filter(d => {
+    if (state.wilaya !== "الكل" && d.w !== state.wilaya) return false;
+    if (state.cat !== "الكل" && d.c !== state.cat) return false;
+    if (q && !d._s.includes(q)) return false;
+    return true;
+  });
+
+  if (state.sort === "name") {
+    arr.sort((a, b) => a.n.localeCompare(b.n, "ar"));
+  } else if (state.sort === "wilaya") {
+    arr.sort((a, b) => a.w.localeCompare(b.w, "ar") || a.n.localeCompare(b.n, "ar"));
+  }
+
+  state.filtered = arr;
+  if (resetPage) state.page = 1;
+
+  renderSidebar();
+  renderQuickChips();
+  renderGrid();
+  renderPagination();
+  updateBadges();
+}
+
+/* شارة "فلترة" في الشريط العلوي */
+function updateBadges() {
+  const active = (state.wilaya !== "الكل") || (state.cat !== "الكل") || !!state.query;
+  filterPill.classList.toggle("has", active);
+  const bits = [];
+  if (state.wilaya !== "الكل") bits.push(state.wilaya);
+  if (state.cat !== "الكل") bits.push(state.cat);
+  topbarSub.textContent = bits.length ? bits.join(" • ") : `${state.all.length} طبيب ومختص`;
+}
+
+/* ==========================================================
+   بناء البطاقة
+   ========================================================== */
 function cardHTML(d) {
   const phones = d.p.length
     ? d.p.map(ph => `
       <div class="phone-row">
-        <a class="phone" href="${telHref(ph)}" title="اتصل بـ ${ph}">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          ${ph}
+        <a class="phone" href="${telHref(ph)}" title="اتصل بـ ${esc(ph)}">
+          ${ICON.phone}${esc(ph)}
         </a>
-        ${isMobile(ph) ? `<a class="wa" href="${waHref(ph)}" target="_blank" rel="noopener" title="واتساب"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.7-1.2-4.2 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.8 8-8.3 8z"/></svg></a>` : ""}
+        ${isMobile(ph) ? `<a class="wa" href="${waHref(ph)}" target="_blank" rel="noopener" aria-label="واتساب ${esc(ph)}">${ICON.wa}</a>` : ""}
       </div>`).join("")
     : `<div class="no-phone">📵 الرقم غير متوفر</div>`;
 
   return `<article class="card">
     <div class="card-head">
-      <div class="avatar">${initial(d.n)}</div>
+      <div class="avatar">${esc(initial(d.n))}</div>
       <div>
-        <h3>${d.n}</h3>
-        <div class="specialty">${d.s}</div>
+        <h3>${esc(d.n)}</h3>
+        <div class="specialty">${esc(d.s)}</div>
         <div class="tags-row">
-          <span class="tag">${d.c}</span>
-          <span class="tag wilaya-tag">📍 ${d.w}</span>
+          <span class="tag">${esc(d.c)}</span>
+          <span class="tag wilaya-tag">📍 ${esc(d.w)}</span>
         </div>
       </div>
     </div>
-    ${d.a ? `<div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${d.a}</span></div>` : ""}
+    ${d.a ? `<div class="addr">${ICON.pin}<span>${esc(d.a)}</span></div>` : ""}
     <div class="phones">${phones}</div>
   </article>`;
 }
 
-/* ============ العرض ============ */
-function render() {
-  const q = norm(query);
-  const filtered = DATA.filter(d => {
-    if (activeWilaya !== "الكل" && d.w !== activeWilaya) return false;
-    if (activeCat !== "الكل" && d.c !== activeCat) return false;
-    if (!q) return true;
-    // البحث يشمل الولاية أيضاً
-    return norm([d.n, d.s, d.c, d.a, d.w, d.p.join(" ")].join(" ")).includes(q);
-  });
+/* ==========================================================
+   عرض الشبكة (صفحة واحدة فقط = أداء عالٍ)
+   ========================================================== */
+function renderGrid() {
+  const total = state.filtered.length;
+  resultCount.textContent = total;
 
-  resultCount.textContent = filtered.length;
-  
-  let label = "";
-  if (activeWilaya !== "الكل") label += `الولاية: ${activeWilaya} `;
-  if (activeCat !== "الكل") label += `| التخصص: ${activeCat}`;
-  filterLabel.textContent = label.trim();
+  if (!total) {
+    grid.innerHTML = `<div class="empty">
+      <div class="ico">🔍</div>
+      <b>لا توجد نتائج مطابقة</b>
+      جرّب البحث بكلمة أخرى أو اختر تخصصاً أو ولاية مختلفة.
+      <br><button onclick="resetAll()">إعادة تعيين الفلاتر</button>
+    </div>`;
+    return;
+  }
 
-  grid.innerHTML = filtered.length
-    ? filtered.map(cardHTML).join("")
-    : `<div class="empty"><div class="ico">🔍</div><b>لا توجد نتائج مطابقة</b>جرّب البحث بكلمة أخرى أو اختر تخصصاً أو ولاية مختلفة.</div>`;
+  const start = (state.page - 1) * state.pageSize;
+  const items = state.filtered.slice(start, start + state.pageSize);
+
+  /* بناء نص واحد ثم حقنه = أسرع من إدخال عنصر بعنصر */
+  grid.innerHTML = items.map(cardHTML).join("");
 }
 
-/* ============ الأحداث ============ */
-let debounce;
-searchInput.addEventListener("input", e => {
-  clearTimeout(debounce);
-  debounce = setTimeout(() => { query = e.target.value; render(); }, 160);
+/* ==========================================================
+   الترقيم
+   ========================================================== */
+function pageNumbers(cur, total) {
+  const out = [];
+  if (total <= 7) { for (let i = 1; i <= total; i++) out.push(i); return out; }
+  out.push(1);
+  let start = Math.max(2, cur - 1);
+  let end = Math.min(total - 1, cur + 1);
+  if (cur <= 3) { start = 2; end = 4; }
+  if (cur >= total - 2) { start = total - 3; end = total - 1; }
+  if (start > 2) out.push("…");
+  for (let i = start; i <= end; i++) out.push(i);
+  if (end < total - 1) out.push("…");
+  out.push(total);
+  return out;
+}
+
+function renderPagination() {
+  const total = state.filtered.length;
+  const pages = Math.max(1, Math.ceil(total / state.pageSize));
+
+  if (state.page > pages) state.page = pages;
+
+  if (total <= state.pageSize) {
+    pagination.innerHTML = total
+      ? `<div class="page-info">عرض جميع النتائج (<b>${total}</b>)</div>`
+      : "";
+    return;
+  }
+
+  const from = (state.page - 1) * state.pageSize + 1;
+  const to = Math.min(state.page * state.pageSize, total);
+
+  const nums = pageNumbers(state.page, pages).map(p =>
+    p === "…"
+      ? `<span class="pbtn dots">…</span>`
+      : `<button class="pbtn${p === state.page ? " active" : ""}" data-page="${p}">${p}</button>`
+  ).join("");
+
+  pagination.innerHTML = `
+    <div class="page-info">عرض <b>${from}</b>–<b>${to}</b> من <b>${total}</b> نتيجة — صفحة <b>${state.page}</b> / ${pages}</div>
+    <div class="page-btns">
+      <button class="pbtn" data-page="${state.page - 1}" ${state.page === 1 ? "disabled" : ""} aria-label="السابق">${ICON.prev}</button>
+      ${nums}
+      <button class="pbtn" data-page="${state.page + 1}" ${state.page === pages ? "disabled" : ""} aria-label="التالي">${ICON.next}</button>
+    </div>`;
+}
+
+/* ==========================================================
+   الأحداث
+   ========================================================== */
+/* --- القائمة الجانبية --- */
+function openSidebar() {
+  sidebar.classList.add("open");
+  overlay.classList.add("show");
+  sidebar.setAttribute("aria-hidden", "false");
+  if (window.innerWidth < 1024) document.body.classList.add("no-scroll");
+}
+function closeSidebar() {
+  sidebar.classList.remove("open");
+  overlay.classList.remove("show");
+  sidebar.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("no-scroll");
+}
+
+$("menuBtn").addEventListener("click", openSidebar);
+filterPill.addEventListener("click", openSidebar);
+$("sbClose").addEventListener("click", closeSidebar);
+overlay.addEventListener("click", closeSidebar);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSidebar(); });
+
+/* --- اختيار ولاية من القائمة الجانبية --- */
+sbWilayas.addEventListener("click", e => {
+  const btn = e.target.closest("[data-w]");
+  if (!btn) return;
+  state.wilaya = btn.dataset.w;
+  state.cat = "الكل";
+  applyFilters();
+  if (window.innerWidth < 1024) closeSidebar();
 });
 
+/* --- اختيار تخصص --- */
+sbCats.addEventListener("click", e => {
+  const btn = e.target.closest("[data-c]");
+  if (!btn) return;
+  state.cat = btn.dataset.c;
+  applyFilters();
+  if (window.innerWidth < 1024) closeSidebar();
+});
+
+/* --- شرائح سريعة --- */
+quickChips.addEventListener("click", e => {
+  const btn = e.target.closest("[data-w]");
+  if (!btn) return;
+  state.wilaya = btn.dataset.w;
+  state.cat = "الكل";
+  applyFilters();
+});
+
+/* --- إعادة التعيين --- */
+window.resetAll = function () {
+  state.query = "";
+  state.wilaya = "الكل";
+  state.cat = "الكل";
+  state.sort = "default";
+  state.page = 1;
+  searchInput.value = "";
+  clearSearch.classList.remove("show");
+  sortSelect.value = "default";
+  applyFilters();
+  closeSidebar();
+};
+$("resetBtn").addEventListener("click", resetAll);
+
+/* --- البحث --- */
+let debounce;
+searchInput.addEventListener("input", e => {
+  const v = e.target.value;
+  clearSearch.classList.toggle("show", v.length > 0);
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    state.query = v;
+    applyFilters();
+  }, 160);
+});
+clearSearch.addEventListener("click", () => {
+  searchInput.value = "";
+  clearSearch.classList.remove("show");
+  state.query = "";
+  applyFilters();
+  searchInput.focus();
+});
+
+/* --- الترتيب وحجم الصفحة --- */
+sortSelect.addEventListener("change", e => {
+  state.sort = e.target.value;
+  applyFilters();
+});
+pageSizeSel.value = String(state.pageSize);
+pageSizeSel.addEventListener("change", e => {
+  state.pageSize = Number(e.target.value);
+  localStorage.setItem("docPageSize", state.pageSize);
+  state.page = 1;
+  renderGrid();
+  renderPagination();
+});
+
+/* --- أزرار الترقيم --- */
+pagination.addEventListener("click", e => {
+  const btn = e.target.closest("[data-page]");
+  if (!btn || btn.disabled) return;
+  const p = Number(btn.dataset.page);
+  if (!p || p === state.page) return;
+  state.page = p;
+  renderGrid();
+  renderPagination();
+  requestAnimationFrame(() => {
+    grid.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+/* --- تحديث البيانات --- */
 refreshBtn.addEventListener("click", async () => {
   refreshBtn.classList.add("loading");
   await loadData();
   setTimeout(() => refreshBtn.classList.remove("loading"), 400);
 });
 
+/* --- زر الأعلى --- */
 window.addEventListener("scroll", () => {
   toTop.classList.toggle("show", window.scrollY > 500);
-});
+}, { passive: true });
 toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-/* ============ تشغيل ============ */
-document.getElementById("year").textContent = new Date().getFullYear();
+/* --- إغلاق القائمة عند تكبير الشاشة --- */
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 1024) {
+    document.body.classList.remove("no-scroll");
+    overlay.classList.remove("show");
+  }
+});
+
+/* ==========================================================
+   التشغيل
+   ========================================================== */
+$("year").textContent = new Date().getFullYear();
 loadData();
 </script>
 
